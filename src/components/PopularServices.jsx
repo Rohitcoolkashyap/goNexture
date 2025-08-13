@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PopularServices: React.FC = () => {
+const PopularServices = () => {
   const popularServices = [
     {
       title: 'Digital Marketing',

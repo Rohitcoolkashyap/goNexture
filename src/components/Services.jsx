@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Services: React.FC = () => {
+const Services = () => {
   const services = [
     {
       icon: '💼',

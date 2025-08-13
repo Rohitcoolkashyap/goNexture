@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Footer: React.FC = () => {
+const Footer = () => {
   const footerLinks = {
     company: [
       { name: 'About Us', href: '#' },

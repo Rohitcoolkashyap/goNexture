@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Header: React.FC = () => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (

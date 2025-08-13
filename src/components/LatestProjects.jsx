@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LatestProjects: React.FC = () => {
+const LatestProjects = () => {
   const projects = [
     {
       title: 'Digital Marketer',

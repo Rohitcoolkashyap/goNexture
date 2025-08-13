@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Blog: React.FC = () => {
+const Blog = () => {
   const blogPosts = [
     {
       title: 'How to Find the Perfect Freelancer for Your Project',
