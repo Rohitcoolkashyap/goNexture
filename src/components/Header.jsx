@@ -3,6 +3,22 @@ import React, { useState } from 'react';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleServicesClick = (e) => {
+    e.preventDefault();
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="bg-primary-600 text-white relative z-50">
       <nav className="container mx-auto px-4 py-4 lg:px-8">
@@ -17,11 +33,10 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            <a href="#home" className="hover:text-secondary-300 transition-colors">Home</a>
-            <a href="#about" className="hover:text-secondary-300 transition-colors">About Us</a>
-            <a href="#services" className="hover:text-secondary-300 transition-colors">Services</a>
-            <a href="#portfolio" className="hover:text-secondary-300 transition-colors">Find Talent</a>
-            <a href="#contact" className="hover:text-secondary-300 transition-colors">Resources</a>
+            {/* <a href="#home" className="hover:text-secondary-300 transition-colors">Home</a> */}
+            {/* <a href="#about" className="hover:text-secondary-300 transition-colors">About Us</a> */}
+            <button onClick={handleServicesClick} className="hover:text-secondary-300 transition-colors">Services</button>
+            <button onClick={handleContactClick} className="hover:text-secondary-300 transition-colors">Contact Us</button>
           </div>
 
           {/* Desktop Auth Buttons */}
@@ -51,7 +66,7 @@ const Header = () => {
             <div className="flex flex-col space-y-4 mt-4">
               <a href="#home" className="hover:text-secondary-300 transition-colors">Home</a>
               <a href="#about" className="hover:text-secondary-300 transition-colors">About Us</a>
-              <a href="#services" className="hover:text-secondary-300 transition-colors">Services</a>
+              <button onClick={handleServicesClick} className="hover:text-secondary-300 transition-colors text-left">Services</button>
               <a href="#portfolio" className="hover:text-secondary-300 transition-colors">Find Talent</a>
               <a href="#contact" className="hover:text-secondary-300 transition-colors">Resources</a>
               <div className="flex flex-col space-y-2 pt-4 border-t border-primary-500">

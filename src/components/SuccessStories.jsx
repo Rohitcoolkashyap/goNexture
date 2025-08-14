@@ -3,7 +3,7 @@ import React from 'react';
 const SuccessStories = () => {
   const testimonials = [
     {
-      name: 'Sarah Johnson',
+      name: 'Rohit Kashyap',
       company: 'TechStart Inc.',
       image: '👩‍💼',
       rating: 5,
@@ -11,7 +11,7 @@ const SuccessStories = () => {
       project: 'Website Redesign'
     },
     {
-      name: 'Michael Chen',
+      name: 'Tushar Arora',
       company: 'Creative Agency',
       image: '👨‍💻',
       rating: 5,

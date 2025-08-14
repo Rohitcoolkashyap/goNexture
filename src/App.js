@@ -3,11 +3,10 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import PopularServices from './components/PopularServices';
-import HowItWorks from './components/HowItWorks';
-import LatestProjects from './components/LatestProjects';
-import TalentPool from './components/TalentPool';
+// import LatestProjects from './components/LatestProjects';
 import SuccessStories from './components/SuccessStories';
-import Blog from './components/Blog';
+import Team from './components/Team';
+import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 
 function App() {
@@ -17,11 +16,10 @@ function App() {
       <Hero />
       <Services />
       <PopularServices />
-      <HowItWorks />
-      <LatestProjects />
-      <TalentPool />
+      {/* <LatestProjects /> */}
       <SuccessStories />
-      <Blog />
+      <Team />
+      <ContactForm />
       <Footer />
     </div>
   );

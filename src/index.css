@@ -9,6 +9,10 @@
     @apply box-border;
   }
   
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
     @apply m-0 font-sans antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
