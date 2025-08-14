@@ -1,3 +1,5 @@
+### live: https://gonexture.netlify.app/
+
 # Gonexture - Freelancing Platform
 
 A modern, responsive freelancing website built with React 18, TypeScript, and Tailwind CSS. This project recreates a professional freelancing platform design with full responsiveness across all devices.
