@@ -1,49 +1,36 @@
 import React from 'react';
+import tusharImage from '../Assets/team/Tushar.JPG';
 
 const Team = () => {
   const teamMembers = [
     {
       name: 'Rohit Kashyap',
       role: 'CEO & Founder',
-      image: '👩‍💼',
-      bio: 'Visionary leader with 5+ years experience in the freelance industry. Passionate about connecting talent with opportunity.',
+      image: null,
+      bio: 'Visionary leader and strategic thinker driving innovation in technology solutions. Passionate about transforming ideas into impactful digital experiences.',
       social: {
         linkedin: 'https://www.linkedin.com/in/rohit-kashyap-5ab844180',
-        // twitter: '#',
-        email: 'sarah@gonexture.com'
+        email: 'rohit@gonexture.com'
       }
     },
     {
       name: 'Tushar Arora',
-      role: 'CTO',
-      image: '👨‍💻',
-      bio: 'Tech innovator focused on building scalable platforms. Expert in full-stack development and system architecture.',
+      role: 'CTO & Co-Founder',
+      image: tusharImage,
+      bio: 'Technical architect and innovation leader. Expert in full-stack development, system architecture, and building scalable technology solutions.',
       social: {
         linkedin: '#',
-        // twitter: '#',
-        email: 'michael@gonexture.com'
+        email: 'tushar@gonexture.com'
       }
     },
     {
-      name: 'Emily Rodriguez',
-      role: 'Head of Operations',
-      image: '👩‍🎯',
-      bio: 'Operations specialist ensuring smooth platform functionality and exceptional user experience for all stakeholders.',
+      name: 'Nitin Soni',
+      role: 'Product Head',
+      image: null,
+      bio: 'Product strategist focused on user experience and market-driven solutions. Ensures every product delivers exceptional value to our clients.',
       social: {
         linkedin: '#',
-        twitter: '#',
-        email: 'emily@gonexture.com'
-      }
-    },
-    {
-      name: 'David Thompson',
-      role: 'Head of Marketing',
-      image: '👨‍📊',
-      bio: 'Marketing strategist with expertise in digital growth and community building. Drives platform visibility and engagement.',
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        email: 'david@gonexture.com'
+        email: 'nitin@gonexture.com'
       }
     }
   ];
@@ -56,18 +43,28 @@ const Team = () => {
             Meet Our Team
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Behind every great platform is a dedicated team. Meet the passionate individuals who make our freelance marketplace thrive.
+            Meet the passionate individuals who drive innovation and deliver exceptional technology solutions for our clients.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6">
           {teamMembers.map((member, index) => (
             <div key={index} className="group">
               <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 text-center h-full">
                 {/* Profile Image */}
                 <div className="mb-6">
-                  <div className="w-24 h-24 lg:w-28 lg:h-28 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center text-4xl lg:text-5xl group-hover:scale-105 transition-transform duration-300">
-                    {member.image}
+                  <div className="w-24 h-24 lg:w-28 lg:h-28 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                    {member.image ? (
+                      <img 
+                        src={member.image} 
+                        alt={`${member.name} - ${member.role}`}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-4xl lg:text-5xl">
+                        {member.name.charAt(0)}
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -96,15 +93,6 @@ const Team = () => {
                     </svg>
                   </a>
                   <a
-                    href={member.social.twitter}
-                    className="w-10 h-10 bg-gray-100 hover:bg-primary-600 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300"
-                    aria-label={`${member.name}'s Twitter`}
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
-                    </svg>
-                  </a>
-                  <a
                     href={`mailto:${member.social.email}`}
                     className="w-10 h-10 bg-gray-100 hover:bg-primary-600 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300"
                     aria-label={`Email ${member.name}`}
@@ -123,34 +111,18 @@ const Team = () => {
         <div className="mt-16 bg-gradient-to-r from-primary-600 to-primary-700 rounded-3xl p-8 lg:p-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
             <div>
-              <div className="text-4xl font-bold mb-2">5+</div>
-              <div className="text-blue-100">Years of Experience</div>
+              <div className="text-4xl font-bold mb-2">3</div>
+              <div className="text-blue-100">Expert Team Members</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">1k+</div>
-              <div className="text-blue-100">Happy Clients Served</div>
+              <div className="text-4xl font-bold mb-2">50K+</div>
+              <div className="text-blue-100">Students Served</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">24/7</div>
-              <div className="text-blue-100">Dedicated Support</div>
+              <div className="text-4xl font-bold mb-2">99.9%</div>
+              <div className="text-blue-100">Client Satisfaction</div>
             </div>
           </div>
-        </div>
-
-        {/* Join Team CTA */}
-        <div className="text-center mt-12">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Want to Join Our Team?
-          </h3>
-          <p className="text-gray-600 mb-6 max-w-lg mx-auto">
-            We're always looking for talented individuals who share our passion for connecting freelancers with amazing opportunities.
-          </p>
-          <button
-            className="bg-primary-600 text-white px-8 py-3 rounded-full font-semibold transition-colors opacity-50 cursor-not-allowed"
-            disabled
-          >
-            View Open Positions
-          </button>
         </div>
       </div>
     </section>

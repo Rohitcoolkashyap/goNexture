@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import logo from "src/Assets/logo.svg"
+   
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -9,7 +10,7 @@ const Header = () => {
     if (servicesSection) {
       servicesSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  };  
 
   const handleContactClick = (e) => {
     e.preventDefault();
@@ -21,16 +22,12 @@ const Header = () => {
 
   return (
     <header className="bg-primary-600 text-white relative z-50">
-      <nav className="container mx-auto px-4 py-4 lg:px-8">
-        <div className="flex items-center justify-between">
+      <nav className="container mx-auto pl-0 pr-2 py-4 lg:pr-8">
+        <div className="flex items-center justify-between"> 
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-white rounded text-primary-600 flex items-center justify-center font-bold text-sm">
-              G
-            </div>
-            <span className="text-lg sm:text-xl font-bold">GONEXTURE</span>
-          </div>
-
+       
+         <img src={logo} alt="Gonexture Logo" className='w-[200px] lg:w-[240px] h-auto'/>
+         
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {/* <a href="#home" className="hover:text-secondary-300 transition-colors">Home</a> */}
