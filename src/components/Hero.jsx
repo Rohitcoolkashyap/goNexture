@@ -70,28 +70,58 @@ const Hero = () => {
           
           </div>
 
-          {/* Right Content - Enhanced Visual */}
-          <div className="lg:w-1/2 relative">
-            <div className="relative">
-              {/* Main Circle */}
-              <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 mx-auto bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 rounded-full flex items-center justify-center relative shadow-2xl animate-pulse">
-                <div className="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20">
-                  <svg className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 text-white/80" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                
-                {/* Rating Badge */}
-                <div className="absolute -bottom-6 -right-6 bg-secondary-400 text-gray-900 px-6 py-3 rounded-full font-bold text-xl shadow-lg animate-bounce">
-                  ⭐ 4.9
-                </div>
+                                {/* Right Content - Clean & Simple */}
+           <div className="lg:w-1/2 relative">
+             <div className="relative mx-auto max-w-md">
+               {/* Simple Feature Cards */}
+               <div className="space-y-6">
+                 {/* Card 1 */}
+                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                   <div className="flex items-center space-x-4">
+                     <div className="w-12 h-12 bg-secondary-400 rounded-lg flex items-center justify-center">
+                       <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h3 className="text-white font-semibold text-lg">Full-Stack Solutions</h3>
+                       <p className="text-blue-200 text-sm">Frontend, Backend & Database</p>
+                     </div>
+                   </div>
+                 </div>
 
-                
+                 {/* Card 2 */}
+                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                   <div className="flex items-center space-x-4">
+                     <div className="w-12 h-12 bg-secondary-400 rounded-lg flex items-center justify-center">
+                       <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h3 className="text-white font-semibold text-lg">Fast Development</h3>
+                       <p className="text-blue-200 text-sm">Modern tech stack & tools</p>
+                     </div>
+                   </div>
+                 </div>
 
-           
-              </div>
-            </div>
-          </div>
+                 {/* Card 3 */}
+                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                   <div className="flex items-center space-x-4">
+                     <div className="w-12 h-12 bg-secondary-400 rounded-lg flex items-center justify-center">
+                       <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h3 className="text-white font-semibold text-lg">SEO & Marketing</h3>
+                       <p className="text-blue-200 text-sm">Search optimization & visibility</p>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
         </div>
       </div>
     </section>
