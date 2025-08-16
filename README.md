@@ -53,7 +53,7 @@ The website is fully responsive and tested across:
    ```
 
 4. **Open your browser**
-   Navigate to `http://localhost:3000`
+   Navigate to `http://localhost:3001`
 
 ## 🏗️ Available Scripts
 
