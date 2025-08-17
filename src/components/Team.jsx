@@ -1,16 +1,19 @@
 import React from 'react';
 import tusharImage from '../Assets/team/Tushar.JPG';
-
+import rohitImage from '../Assets/team/rk.png';
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
 const Team = () => {
+  const [sectionRef, isVisible] = useIntersectionObserver();
+  
   const teamMembers = [
     {
       name: 'Rohit Kashyap',
       role: 'CEO & Founder',
-      image: null,
+      image: rohitImage,
       bio: 'Visionary leader and strategic thinker driving innovation in technology solutions. Passionate about transforming ideas into impactful digital experiences.',
       social: {
         linkedin: 'https://www.linkedin.com/in/rohit-kashyap-5ab844180',
-        email: 'rohit@gonexture.com'
+        email: 'kashyaprohit8360@gmail.com'
       }
     },
     {
@@ -19,8 +22,8 @@ const Team = () => {
       image: tusharImage,
       bio: 'Technical architect and innovation leader. Expert in full-stack development, system architecture, and building scalable technology solutions.',
       social: {
-        linkedin: '#',
-        email: 'tushar@gonexture.com'
+        linkedin: 'https://www.linkedin.com/in/tushar-arora-131a43166',
+        email: 'tushararora1210@gmail.com'
       }
     },
     {
@@ -36,7 +39,7 @@ const Team = () => {
   ];
 
   return (
-    <section className="py-12 lg:py-12 bg-white">
+    <section ref={sectionRef} className="py-16 lg:py-16 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -85,6 +88,8 @@ const Team = () => {
                 <div className="flex justify-center space-x-4 pt-4 border-t border-gray-100">
                   <a
                     href={member.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 bg-gray-100 hover:bg-primary-600 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300"
                     aria-label={`${member.name}'s LinkedIn`}
                   >
@@ -93,7 +98,9 @@ const Team = () => {
                     </svg>
                   </a>
                   <a
-                    href={`mailto:${member.social.email}`}
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${member.social.email}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 bg-gray-100 hover:bg-primary-600 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300"
                     aria-label={`Email ${member.name}`}
                   >
