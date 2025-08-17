@@ -3,10 +3,16 @@ import React from 'react';
 const PopularServices = () => {
   const popularServices = [
     {
-      title: 'Digital Marketing',
+      title: 'Web Development',
       image: '📱',
-      description: 'Boost your online presence',
+      description: 'Full-stack web applications',
       color: 'bg-orange-100'
+    },
+    {
+      title: 'Mobile App',
+      image: '📱',
+      description: 'iOS and Android development',
+      color: 'bg-green-100'
     },
     {
       title: 'Graphic Design',
@@ -19,12 +25,6 @@ const PopularServices = () => {
       image: '⚡',
       description: 'Custom WordPress development',
       color: 'bg-blue-100'
-    },
-    {
-      title: 'Mobile App',
-      image: '📱',
-      description: 'iOS and Android development',
-      color: 'bg-green-100'
     }
   ];
 

@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
 
 const ContactForm = () => {
+  const [sectionRef, isVisible] = useIntersectionObserver();
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
     projectType: '',
-    budget: '',
     message: ''
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
 
   const handleChange = (e) => {
     setFormData({
@@ -17,23 +24,56 @@ const ContactForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      projectType: '',
-      budget: '',
-      message: ''
-    });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_a96wlco';
+    const adminTemplateId = process.env.REACT_APP_EMAILJS_ADMIN_TEMPLATE_ID || 'template_grxaqx1';
+    const clientTemplateId = process.env.REACT_APP_EMAILJS_CLIENT_TEMPLATE_ID || 'template_30qawu2';
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'ksfz4uo4U5d7VqWQt';
+
+    const templateAdmin = {
+      from_name: formData.name,
+      from_email: formData.email,
+      phone: formData.phone,
+      company: formData.company,
+      project_type: formData.projectType,
+      message: formData.message,
+      to_name: 'GoNexture Team'
+    };
+    const templateClient = {
+      from_name: formData.name,
+      from_email: formData.email,
+    };
+
+    try {
+      // Send to Admin
+      await emailjs.send(serviceId, adminTemplateId, templateAdmin, publicKey);
+
+      // Send Auto-Reply to Client
+      await emailjs.send(serviceId, clientTemplateId, templateClient, publicKey);
+
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        projectType: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section id="contact" className="py-12 lg:py-12 bg-gray-50">
+    <section ref={sectionRef} id="contact" className="py-16 lg:py-16 bg-gray-50">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -83,19 +123,35 @@ const ContactForm = () => {
                     </div>
                   </div>
 
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Company Name
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
-                      placeholder="Enter your company name"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                        Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                        placeholder="Enter your phone number"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
+                        Company Name
+                      </label>
+                      <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                        placeholder="Enter your company name"
+                      />
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -138,11 +194,51 @@ const ContactForm = () => {
                     ></textarea>
                   </div>
 
+                  {/* Status Messages */}
+                  {submitStatus === 'success' && (
+                    <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
+                      <div className="flex items-center">
+                        <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span className="font-medium">Success!</span>
+                      </div>
+                      <p className="mt-1 text-sm">Your project request has been sent successfully. We'll get back to you soon!</p>
+                    </div>
+                  )}
+
+                  {submitStatus === 'error' && (
+                    <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+                      <div className="flex items-center">
+                        <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        <span className="font-medium">Error!</span>
+                      </div>
+                      <p className="mt-1 text-sm">There was an error sending your request. Please try again or contact us directly.</p>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full bg-primary-600 text-white py-4 px-6 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-lg"
+                    disabled={isSubmitting}
+                    className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-colors ${
+                      isSubmitting 
+                        ? 'bg-gray-400 text-gray-200 cursor-not-allowed' 
+                        : 'bg-primary-600 text-white hover:bg-primary-700'
+                    }`}
                   >
-                    Submit Project Request
+                    {isSubmitting ? (
+                      <div className="flex items-center justify-center">
+                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending Request...
+                      </div>
+                    ) : (
+                      'Submit Project Request'
+                    )}
                   </button>
                 </form>
               </div>

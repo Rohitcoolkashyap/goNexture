@@ -1,4 +1,5 @@
 import React from 'react';
+import AnimatedSection from './AnimatedSection';
 
 const Hero = () => {
   const handleGetStartedClick = () => {
@@ -8,8 +9,15 @@ const Hero = () => {
     }
   };
 
+  const handleViewPortfolioClick = () => {
+    const portfolioSection = document.getElementById('portfolio');
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white py-16 lg:py-24 relative overflow-hidden">
+    <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white py-16 lg:py-16 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -20,37 +28,37 @@ const Hero = () => {
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Left Content */}
-          <div className="lg:w-1/2 text-center lg:text-left">
+          <AnimatedSection animation="slide-left" className="lg:w-1/2 text-center lg:text-left">
                          {/* Badge */}
-             <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-6 animate-fade-in">
+             <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
                <span className="w-2 h-2 bg-secondary-400 rounded-full mr-2"></span>
                Fresh ideas, modern solutions
              </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 animate-fade-in leading-tight">
-              GONEXTURE
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+             GoNexture
             </h1>
             
-            <p className="text-lg sm:text-xl lg:text-2xl mb-8 text-blue-100 animate-slide-up leading-relaxed">
+            <p className="text-lg sm:text-xl lg:text-2xl mb-8 text-blue-100 leading-relaxed">
               Where Innovation Meets <span className="text-secondary-400 font-semibold">Execution</span>
             </p>
 
-            <p className="text-base text-blue-200 mb-8 animate-slide-up max-w-lg">
+            <p className="text-base text-blue-200 mb-8 max-w-lg">
               Transform your ideas into reality with our cutting-edge web solutions. 
               From stunning designs to powerful functionality, we bring your vision to life.
             </p>
 
             {/* Popular Searches */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-10 animate-slide-up">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-10">
               <span className="text-blue-200 text-sm font-medium self-center">Popular:</span>
-              <button className="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 border border-white/20">
-                Website Design
+              <button className="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 border border-white/20 cursor-default">
+                Web Development
               </button>
-              <button className="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 border border-white/20">
-                Logo Design
+              <button className="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 border border-white/20 cursor-default">
+                Mobile Apps
               </button>
-              <button className="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 border border-white/20">
-                WordPress
+              <button className="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 border border-white/20 cursor-default">
+                SEO & Marketing
               </button>
             </div>
 
@@ -62,16 +70,18 @@ const Hero = () => {
               >
                 Get Started
               </button>
-              <button className="border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
+              <button 
+                onClick={handleViewPortfolioClick}
+                className="border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+              >
                 View Portfolio
               </button>
             </div>
 
-          
-          </div>
+          </AnimatedSection>
 
                                 {/* Right Content - Clean & Simple */}
-           <div className="lg:w-1/2 relative">
+           <AnimatedSection animation="slide-right" delay={0.2} className="lg:w-1/2 relative">
              <div className="relative mx-auto max-w-md">
                {/* Simple Feature Cards */}
                <div className="space-y-6">
@@ -121,7 +131,7 @@ const Hero = () => {
                  </div>
                </div>
              </div>
-           </div>
+           </AnimatedSection>
         </div>
       </div>
     </section>

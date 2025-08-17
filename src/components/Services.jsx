@@ -47,7 +47,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+    <section id="services" className="py-16 lg:py-16 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-72 h-72 bg-primary-600 rounded-full mix-blend-multiply filter blur-xl"></div>
@@ -75,7 +75,10 @@ const Services = () => {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="group">
+            <div 
+              key={index} 
+              className="group"
+            >
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary-200">
                 {/* Icon */}
                 <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">

@@ -35,7 +35,7 @@ const LatestProjects = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+    <section id="portfolio" className="py-16 lg:py-16 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-72 h-72 bg-primary-600 rounded-full mix-blend-multiply filter blur-xl"></div>
@@ -62,8 +62,8 @@ const LatestProjects = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           {projects.map((project, index) => (
-            <div key={index} className="group">
-              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+            <div key={index} className="group h-full">
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 h-full flex flex-col">
                 {/* Project Header */}
                 <div className="h-48 bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-6xl relative">
                   {project.image}
@@ -76,34 +76,36 @@ const LatestProjects = () => {
                 </div>
                 
                 {/* Project Content */}
-                <div className="p-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-semibold text-primary-600 bg-primary-100 px-3 py-1 rounded-full">
-                      {project.category}
-                    </span>
-                    <span className="text-sm text-gray-500 font-mono">
-                      {project.website}
-                    </span>
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
-                    {project.title}
-                  </h3>
-                  
-                                     <p className="text-gray-600 mb-6 leading-relaxed">
-                     {project.description}
-                   </p>
-                   
-                   {/* Features */}
-                  <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-gray-700 mb-3">Key Features:</h4>
-                    <div className="space-y-1">
-                      {project.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center space-x-2">
-                          <div className="w-1.5 h-1.5 bg-secondary-400 rounded-full"></div>
-                          <span className="text-sm text-gray-600">{feature}</span>
-                        </div>
-                      ))}
+                <div className="p-8 flex-1 flex flex-col">
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-semibold text-primary-600 bg-primary-100 px-3 py-1 rounded-full">
+                        {project.category}
+                      </span>
+                      <span className="text-sm text-gray-500 font-mono">
+                        {project.website}
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-gray-600 mb-6 leading-relaxed">
+                      {project.description}
+                    </p>
+                    
+                    {/* Features */}
+                    <div className="mb-6">
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Key Features:</h4>
+                      <div className="space-y-1">
+                        {project.features.map((feature, featureIndex) => (
+                          <div key={featureIndex} className="flex items-center space-x-2">
+                            <div className="w-1.5 h-1.5 bg-secondary-400 rounded-full"></div>
+                            <span className="text-sm text-gray-600">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
@@ -112,7 +114,7 @@ const LatestProjects = () => {
                     href={`https://${project.website}`} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block w-full bg-primary-600 text-white text-center py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors"
+                    className="block w-full bg-primary-600 text-white text-center py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors mt-auto"
                   >
                     Visit Website
                   </a>
