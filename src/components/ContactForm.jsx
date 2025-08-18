@@ -73,26 +73,26 @@ const ContactForm = () => {
   };
 
   return (
-    <section ref={sectionRef} id="contact" className="py-16 lg:py-16 bg-gray-50">
+    <section ref={sectionRef} id="contact" className="py-12 lg:py-16 pt-8 lg:pt-12 bg-gray-50">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 lg:mb-12">
+            <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-3 lg:mb-4">
               Start Your Project Today
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto text-sm lg:text-base px-4 lg:px-0">
               Ready to bring your ideas to life? Fill out the form below and let's discuss how we can help you find the perfect freelancer for your project.
             </p>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
+          <div className="bg-white rounded-2xl lg:rounded-3xl shadow-lg overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2">
               {/* Form Section */}
-              <div className="p-8 lg:p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-6 lg:p-8">
+                <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="name" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
                         Full Name *
                       </label>
                       <input
@@ -102,12 +102,12 @@ const ContactForm = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-sm lg:text-base"
                         placeholder="Enter your full name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="email" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
                         Email Address *
                       </label>
                       <input
@@ -117,15 +117,15 @@ const ContactForm = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-sm lg:text-base"
                         placeholder="Enter your email"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="phone" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
                         Phone Number
                       </label>
                       <input
@@ -134,12 +134,12 @@ const ContactForm = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-sm lg:text-base"
                         placeholder="Enter your phone number"
                       />
                     </div>
                     <div>
-                      <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="company" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
                         Company Name
                       </label>
                       <input
@@ -148,15 +148,15 @@ const ContactForm = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-sm lg:text-base"
                         placeholder="Enter your company name"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                     <div>
-                      <label htmlFor="projectType" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="projectType" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
                         Project Type *
                       </label>
                       <select
@@ -165,7 +165,7 @@ const ContactForm = () => {
                         value={formData.projectType}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-sm lg:text-base"
                       >
                         <option value="">Select project type</option>
                         <option value="web-development">Web Development</option>
@@ -179,7 +179,7 @@ const ContactForm = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="message" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
                       Project Description *
                     </label>
                     <textarea
@@ -188,8 +188,8 @@ const ContactForm = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      rows="5"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all resize-none"
+                      rows="4"
+                      className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all resize-none text-sm lg:text-base"
                       placeholder="Tell us about your project requirements..."
                     ></textarea>
                   </div>
@@ -222,7 +222,7 @@ const ContactForm = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-colors ${
+                    className={`w-full py-3 lg:py-4 px-4 lg:px-6 rounded-lg font-semibold text-base lg:text-lg transition-colors ${
                       isSubmitting 
                         ? 'bg-gray-400 text-gray-200 cursor-not-allowed' 
                         : 'bg-primary-600 text-white hover:bg-primary-700'
@@ -230,7 +230,7 @@ const ContactForm = () => {
                   >
                     {isSubmitting ? (
                       <div className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin -ml-1 mr-3 h-4 w-4 lg:h-5 lg:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
@@ -244,53 +244,53 @@ const ContactForm = () => {
               </div>
 
               {/* Info Section */}
-              <div className="bg-primary-600 text-white p-8 lg:p-12 flex flex-col justify-center">
-                <div className="space-y-8">
+              <div className="bg-primary-600 text-white p-6 lg:p-12 flex flex-col justify-center">
+                <div className="space-y-6 lg:space-y-8">
                   <div>
-                    <h3 className="text-2xl font-bold mb-4">Why Choose Us?</h3>
-                    <p className="text-blue-100 mb-6">
+                    <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4">Why Choose Us?</h3>
+                    <p className="text-blue-100 mb-4 lg:mb-6 text-sm lg:text-base">
                       Join thousands of satisfied clients who have found their perfect freelance match through our platform.
                     </p>
                   </div>
 
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
+                  <div className="space-y-4 lg:space-y-6">
+                    <div className="flex items-start space-x-3 lg:space-x-4">
+                      <div className="w-6 h-6 lg:w-8 lg:h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
                         ✓
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-1">Vetted Professionals</h4>
-                        <p className="text-blue-100 text-sm">All freelancers are thoroughly screened and verified</p>
+                        <h4 className="font-semibold mb-1 text-sm lg:text-base">Vetted Professionals</h4>
+                        <p className="text-blue-100 text-xs lg:text-sm">All freelancers are thoroughly screened and verified</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3 lg:space-x-4">
+                      <div className="w-6 h-6 lg:w-8 lg:h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
                         ✓
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-1">Fast Matching</h4>
-                        <p className="text-blue-100 text-sm">Get matched with suitable freelancers within 24 hours</p>
+                        <h4 className="font-semibold mb-1 text-sm lg:text-base">Fast Matching</h4>
+                        <p className="text-blue-100 text-xs lg:text-sm">Get matched with suitable freelancers within 24 hours</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3 lg:space-x-4">
+                      <div className="w-6 h-6 lg:w-8 lg:h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
                         ✓
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-1">Secure Payments</h4>
-                        <p className="text-blue-100 text-sm">Safe and secure payment processing with escrow protection</p>
+                        <h4 className="font-semibold mb-1 text-sm lg:text-base">Secure Payments</h4>
+                        <p className="text-blue-100 text-xs lg:text-sm">Safe and secure payment processing with escrow protection</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3 lg:space-x-4">
+                      <div className="w-6 h-6 lg:w-8 lg:h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
                         ✓
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-1">24/7 Support</h4>
-                        <p className="text-blue-100 text-sm">Round-the-clock customer support for all your needs</p>
+                        <h4 className="font-semibold mb-1 text-sm lg:text-base">24/7 Support</h4>
+                        <p className="text-blue-100 text-xs lg:text-sm">Round-the-clock customer support for all your needs</p>
                       </div>
                     </div>
                   </div>

@@ -42,11 +42,11 @@ const Header = () => {
       )}
       
       <header className="bg-primary-600 text-white relative z-50">
-      <nav className="container mx-auto pl-0 pr-2 py-4 lg:pr-8">
+      <nav className="container mx-auto px-4 lg:px-8 py-3 lg:py-4">
         <div className="flex items-center justify-between"> 
           {/* Logo */}
        
-         <img src={logo} alt="Gonexture Logo" className='w-[200px] lg:w-[240px] h-auto'/>
+         <img src={logo} alt="Gonexture Logo" className='w-[180px] lg:w-[240px] h-auto'/>
          
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
