@@ -41,18 +41,23 @@ const Header = () => {
         />
       )}
       
-      <header className="bg-primary-600 text-white relative z-50">
-      <nav className="container mx-auto px-4 lg:px-8 py-3 lg:py-4">
+      <header className="bg-primary-700 text-white relative z-50">
+      <nav className="container mx-auto px-4 lg:px-8 py-4 lg:py-6">
         <div className="flex items-center justify-between"> 
           {/* Logo */}
-       
-         <img src={logo} alt="Gonexture Logo" className='w-[180px] lg:w-[240px] h-auto'/>
+         <img src={logo} alt="Gonexture Logo" className='w-[160px] lg:w-[200px] h-auto'/>
          
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            <button onClick={handleServicesClick} className="hover:text-secondary-300 transition-colors">Services</button>
-            <button onClick={handlePortfolioClick} className="hover:text-secondary-300 transition-colors">Our Portfolio</button>
-            <button onClick={handleContactClick} className="hover:text-secondary-300 transition-colors">Contact Us</button>
+            <button onClick={handleServicesClick} className="hover:text-secondary-300 transition-colors font-medium">Services</button>
+            <button onClick={handlePortfolioClick} className="hover:text-secondary-300 transition-colors font-medium">Portfolio</button>
+            <button onClick={handleContactClick} className="hover:text-secondary-300 transition-colors font-medium">Contact Us</button>
+            <button 
+              onClick={handleContactClick}
+              className="bg-yellow-400 text-gray-900 px-6 py-2.5 rounded-full font-bold hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 ml-4"
+            >
+              Get Started
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
