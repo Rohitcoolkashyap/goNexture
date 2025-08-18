@@ -29,7 +29,7 @@ const Footer = () => {
   return (
     <footer className="bg-primary-600 text-white">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="py-6 lg:py-8 border-t border-primary-500">
+        <div className="py-4 border-t border-primary-500">
           {/* Mobile Layout */}
           <div className="lg:hidden">
             {/* Single Line Layout */}
