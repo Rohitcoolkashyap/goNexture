@@ -17,7 +17,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white py-16 lg:py-16 relative overflow-hidden">
+    <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white py-12 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -66,7 +66,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-slide-up">
               <button 
                 onClick={handleGetStartedClick}
-                className="bg-secondary-400 text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-secondary-300 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="bg-secondary-400 text-gray-900 px-6 py-2 rounded-full font-bold text-lg hover:bg-secondary-300 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Get Started
               </button>

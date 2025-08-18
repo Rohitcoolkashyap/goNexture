@@ -73,7 +73,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section ref={sectionRef} id="contact" className="py-16 lg:py-16 bg-gray-50">
+    <section ref={sectionRef} id="contact" className="py-16 pt-12 bg-gray-50">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">

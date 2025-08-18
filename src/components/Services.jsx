@@ -57,16 +57,16 @@ const Services = () => {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <div className="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-6">
             <span className="w-2 h-2 bg-primary-600 rounded-full mr-2"></span>
             Complete Tech Solutions
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+          <h2 className="text-2xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
             Anything You Can Think Of,{' '}
             <span className="text-primary-600">We Have It</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed">
             From concept to deployment, we provide comprehensive technology solutions 
             that transform your ideas into powerful digital experiences.
           </p>
@@ -79,7 +79,7 @@ const Services = () => {
               key={index} 
               className="group"
             >
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary-200">
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary-200">
                 {/* Icon */}
                 <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
@@ -92,18 +92,6 @@ const Services = () => {
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   {service.description}
                 </p>
-                
-                {/* Features List */}
-                <div className="space-y-2">
-                  {service.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center space-x-2">
-                      <div className="w-1.5 h-1.5 bg-secondary-400 rounded-full"></div>
-                      <span className="text-sm text-gray-600">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                                 {/* Hover Effect */}
                  <div className="mt-6 pt-6 border-t border-gray-100">
                    <button 
                      onClick={scrollToContact}
@@ -126,13 +114,13 @@ const Services = () => {
             <h3 className="text-2xl lg:text-3xl font-bold mb-4">
               Don't See What You Need?
             </h3>
-            <p className="text-primary-100 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-primary-100 text-base mb-8 max-w-2xl mx-auto">
               We're always expanding our services. If you have a unique requirement, 
               let's discuss how we can help bring your vision to life.
             </p>
-                         <button 
+            <button 
                onClick={scrollToContact}
-               className="bg-white text-primary-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
+               className="bg-white text-primary-600 px-4 py-2 rounded-full font-bold text-base hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
              >
                Let's Talk About Your Project
              </button>

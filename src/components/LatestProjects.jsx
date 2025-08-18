@@ -35,7 +35,7 @@ const LatestProjects = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-16 lg:py-16 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+    <section id="portfolio" className="py-16 pt-14 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-72 h-72 bg-primary-600 rounded-full mix-blend-multiply filter blur-xl"></div>
@@ -50,11 +50,11 @@ const LatestProjects = () => {
             <span className="w-2 h-2 bg-primary-600 rounded-full mr-2"></span>
             Our Portfolio
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+          <h2 className="text-2xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             Projects We're{' '}
             <span className="text-primary-600">Proud Of</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed">
             End-to-end development of comprehensive educational platforms that serve thousands of students daily.
           </p>
         </div>
@@ -94,19 +94,6 @@ const LatestProjects = () => {
                     <p className="text-gray-600 mb-6 leading-relaxed">
                       {project.description}
                     </p>
-                    
-                    {/* Features */}
-                    <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Key Features:</h4>
-                      <div className="space-y-1">
-                        {project.features.map((feature, featureIndex) => (
-                          <div key={featureIndex} className="flex items-center space-x-2">
-                            <div className="w-1.5 h-1.5 bg-secondary-400 rounded-full"></div>
-                            <span className="text-sm text-gray-600">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
                   </div>
 
                   {/* Action Button */}

@@ -116,17 +116,17 @@ const Team = () => {
 
         {/* Team Stats */}
         <div className="mt-16 bg-gradient-to-r from-primary-600 to-primary-700 rounded-3xl p-8 lg:p-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-8 text-center text-white">
             <div>
-              <div className="text-4xl font-bold mb-2">3</div>
+              <div className="text-2xl lg:text-4xl font-bold mb-2">3</div>
               <div className="text-blue-100">Expert Team Members</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">50K+</div>
+              <div className="text-2xl lg:text-4xl font-bold mb-2">50K+</div>
               <div className="text-blue-100">Students Served</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">99.9%</div>
+              <div className="text-2xl lg:text-4xl font-bold mb-2">99.9%</div>
               <div className="text-blue-100">Client Satisfaction</div>
             </div>
           </div>
