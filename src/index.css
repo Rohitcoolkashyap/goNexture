@@ -16,7 +16,22 @@
   body {
     @apply m-0 font-sans antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  } 
+    cursor: none; /* Hide default cursor for custom cursor effect */
+  }
+
+  /* Custom cursor styles */
+  .cursor-magnetic {
+    cursor: none;
+  }
+
+  .cursor-magnetic:hover {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+}
+
+.buttonStyle {
+  background: rgb(186, 215, 245);
+  color: #0f131c;
 }
 
 @layer utilities {
@@ -73,6 +88,51 @@
     opacity: 0;
     transform: translateX(50px);
   }
+
+  /* Hover animations */
+  .hover-float:hover {
+    animation: float 2s ease-in-out infinite;
+  }
+
+  .hover-glow:hover {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .hover-wiggle:hover {
+    animation: wiggle 0.5s ease-in-out;
+  }
+
+  /* Magnetic button effect */
+  .magnetic-hover {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+
+  /* Glowing text effect */
+  .glow-text {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5),
+                 0 0 20px rgba(59, 130, 246, 0.3),
+                 0 0 30px rgba(59, 130, 246, 0.2);
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Interactive particle animation */
+  .particle-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .particle-float:nth-child(odd) {
+    animation-delay: 1.5s;
+  }
+
+  .particle-float:nth-child(even) {
+    animation-delay: 0.75s;
+  }
 }
 
 @keyframes fadeInUp {
@@ -125,5 +185,41 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.6);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
   }
 }
