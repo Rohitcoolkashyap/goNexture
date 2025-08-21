@@ -7,6 +7,7 @@ const HeroContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     projectType: '',
     message: ''
   });
@@ -28,20 +29,37 @@ const HeroContactForm = () => {
 
     const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_a96wlco';
     const adminTemplateId = process.env.REACT_APP_EMAILJS_ADMIN_TEMPLATE_ID || 'template_grxaqx1';
+    const clientTemplateId = process.env.REACT_APP_EMAILJS_CLIENT_TEMPLATE_ID || 'template_30qawu2';
     const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'ksfz4uo4U5d7VqWQt';
 
     const templateAdmin = {
       from_name: formData.name,
       from_email: formData.email,
+      phone: formData.phone,
       project_type: formData.projectType,
       message: formData.message,
       to_name: 'GoNexture Team'
     };
+    const templateClient = {
+      from_name: formData.name,
+      from_email: formData.email,
+    };
 
     try {
+      // Send to Admin
       await emailjs.send(serviceId, adminTemplateId, templateAdmin, publicKey);
+
+      // Send Auto-Reply to Client
+      await emailjs.send(serviceId, clientTemplateId, templateClient, publicKey);
+
       setSubmitStatus('success');
-      setFormData({ name: '', email: '', projectType: '', message: '' });
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        projectType: '',
+        message: ''
+      });
     } catch (error) {
       console.error('Error sending email:', error);
       setSubmitStatus('error');
@@ -51,14 +69,13 @@ const HeroContactForm = () => {
   };
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:border-slate-600/50 group">
+    <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-4 sm:p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:border-slate-600/50 group w-full">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-4">
         <h3 className="text-xl font-bold text-white mb-2">Start building</h3>
-        <p className="text-slate-400 text-sm">Crush your backlog with our personal engineering team.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
         {/* Name Input */}
         <div>
           <input
@@ -67,7 +84,7 @@ const HeroContactForm = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm"
+            className="w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm"
             placeholder="Full name"
           />
         </div>
@@ -80,8 +97,20 @@ const HeroContactForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm"
+            className="w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm"
             placeholder="Email address"
+          />
+        </div>
+
+        {/* Phone Input */}
+        <div>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            className="w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm"
+            placeholder="Phone number"
           />
         </div>
 
@@ -99,6 +128,7 @@ const HeroContactForm = () => {
             <option value="mobile-app">Mobile App</option>
             <option value="design">Design</option>
             <option value="marketing">Digital Marketing</option>
+            <option value="writing">Content Writing</option>
             <option value="other">Other</option>
           </select>
         </div>
@@ -144,7 +174,7 @@ const HeroContactForm = () => {
           ref={magneticRef}
           type="submit"
           disabled={isSubmitting}
-          className={`w-full py-3 px-4 rounded-lg font-medium text-sm transition-all buttonStyle cursor-magnetic relative overflow-hidden group ${
+          className={`w-full py-2.5 px-3 sm:py-3 sm:px-4 rounded-lg font-medium text-sm transition-all buttonStyle cursor-magnetic relative overflow-hidden group ${
             isSubmitting 
               ? 'bg-slate-600 text-slate-400 cursor-not-allowed' 
               : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-blue-500/25'
@@ -168,24 +198,6 @@ const HeroContactForm = () => {
           )}
         </button>
       </form>
-
-      {/* Features */}
-      <div className="mt-6 pt-6 border-t border-slate-700/50">
-        <div className="grid grid-cols-2 gap-4 text-xs text-slate-400">
-          <div className="flex items-center">
-            <svg className="w-4 h-4 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            Fast response
-          </div>
-          <div className="flex items-center">
-            <svg className="w-4 h-4 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            Free consultation
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

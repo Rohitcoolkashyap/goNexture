@@ -93,7 +93,7 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-40">
           {/* Left Content */}
           <AnimatedSection animation="slide-left" className="lg:w-1/2 text-center lg:text-left">
             {/* Badge */}
@@ -170,8 +170,8 @@ const Hero = () => {
           </AnimatedSection>
 
           {/* Right Content - Contact Form */}
-          <AnimatedSection animation="slide-right" delay={0.2} className="lg:w-1/2 relative">
-            <div className="relative mx-auto max-w-md">
+          <AnimatedSection animation="slide-right" className="w-full lg:w-1/2 relative mt-6 lg:mt-0">
+            <div className="relative mx-auto max-w-md lg:max-w-sm xl:max-w-md">
               <HeroContactForm />
             </div>
           </AnimatedSection>
