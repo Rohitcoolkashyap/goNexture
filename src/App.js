@@ -7,14 +7,18 @@ import Team from './components/Team';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import AnimatedSection from './components/AnimatedSection';
+import CursorFollower from './components/CursorFollower';
 
 function App() {
   return (
     <div className="App">
+      <CursorFollower />
       <Header />
         <Hero />
       <AnimatedSection animation="fade-up">
-        <Services />
+        <div id="services">
+          <Services />
+        </div>
       </AnimatedSection>
       <AnimatedSection animation="fade-up">
         <LatestProjects />

@@ -1,111 +1,150 @@
-import React, { useState } from 'react';
-import logo from "src/Assets/logo.svg"
-   
+import React, { useState } from "react";
+import logo from "src/Assets/logo.svg";
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleServicesClick = (e) => {
-    e.preventDefault();
-    const servicesSection = document.getElementById('services');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMenuOpen(false); // Close mobile menu after click
-  };  
+  const navItems = [
+    { name: "Home", action: "home" },
+    { name: "Services", action: "services" },
+    { name: "Contact", action: "contact" },
+  ];
 
-  const handleContactClick = (e) => {
+  const handleNavClick = (action, e) => {
     e.preventDefault();
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    
+    switch (action) {
+      case "home":
+        window.location.href = "/";
+        break;
+      case "services":
+        const servicesSection = document.getElementById("services");
+        if (servicesSection) {
+          servicesSection.scrollIntoView({ behavior: "smooth" });
+        }
+        break;
+      case "contact":
+        const contactSection = document.getElementById("contact");
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: "smooth" });
+        }
+        break;
+      default:
+        break;
     }
-    setIsMenuOpen(false); // Close mobile menu after click
-  };
-
-  const handlePortfolioClick = (e) => {
-    e.preventDefault();
-    const portfolioSection = document.getElementById('portfolio');
-    if (portfolioSection) {
-      portfolioSection.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMenuOpen(false); // Close mobile menu after click
+    
+    // Close mobile menu if open
+    setIsMenuOpen(false);
   };
 
   return (
-    <>
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div 
-          className="lg:hidden fixed inset-0 bg-black/20 z-30 animate-fade-in"
-          onClick={() => setIsMenuOpen(false)}
-        />
-      )}
-      
-      <header className="bg-primary-600 text-white relative z-50">
-      <nav className="container mx-auto px-4 lg:px-8 py-3 lg:py-4">
-        <div className="flex items-center justify-between"> 
-          {/* Logo */}
-       
-         <img src={logo} alt="Gonexture Logo" className='w-[180px] lg:w-[240px] h-auto'/>
-         
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <button onClick={handleServicesClick} className="hover:text-secondary-300 transition-colors">Services</button>
-            <button onClick={handlePortfolioClick} className="hover:text-secondary-300 transition-colors">Our Portfolio</button>
-            <button onClick={handleContactClick} className="hover:text-secondary-300 transition-colors">Contact Us</button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 hover:bg-primary-700/50 rounded-lg transition-all duration-200 ease-in-out active:bg-primary-800/50"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+    <header className="bg-slate-900 text-white relative z-50 h-20 flex items-center border-none pt-8">
+      <div className="container mx-auto flex items-center justify-between px-6 lg:px-12">
+        {/* Logo */}
+        <div className="flex items-center">
+          <button 
+            onClick={(e) => handleNavClick("home", e)}
+            className="cursor-magnetic"
           >
-            <svg 
-              className={`w-6 h-6 transition-transform duration-200 ${isMenuOpen ? 'rotate-90' : ''}`} 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              {isMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            <img src={logo} alt="Logo" className="w-22 h-16 mr-2 object-contain" style={{width: '200px', height: '64px'}} />
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-primary-600 shadow-lg border-t border-primary-500/30 animate-fade-in z-40">
-            <div className="container mx-auto px-4 py-3">
-              <div className="flex flex-col">
-                <button 
-                  onClick={handleServicesClick} 
-                  className="w-full py-3 px-2 text-left text-white hover:text-secondary-300 hover:bg-primary-700/50 transition-all duration-200 ease-in-out font-medium border-b border-primary-500/20 last:border-b-0"
+        {/* Desktop Nav */}
+        <nav className="hidden lg:flex items-center bg-slate-800/90 px-6 py-3 rounded-2xl border border-slate-700">
+          <ul className="flex items-center space-x-6 text-[15px] font-medium">
+            {navItems.map((item, index) => (
+              <li key={index}>
+                <button
+                  onClick={(e) => handleNavClick(item.action, e)}
+                  className="text-slate-300 hover:text-white transition-colors cursor-magnetic"
                 >
-                  Services
+                  {item.name}
                 </button>
-                <button 
-                  onClick={handlePortfolioClick} 
-                  className="w-full py-3 px-2 text-left text-white hover:text-secondary-300 hover:bg-primary-700/50 transition-all duration-200 ease-in-out font-medium border-b border-primary-500/20 last:border-b-0"
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Right side */}
+        <div className="hidden lg:flex items-center space-x-4">
+          {/* <a
+            href="#login"
+            className="text-slate-300 hover:text-white transition-colors"
+          >
+            Login
+          </a> */}
+          <button
+            onClick={(e) => handleNavClick("contact", e)}
+            className="bg-slate-200 text-slate-900 font-medium px-5 py-2 rounded-xl hover:bg-white transition cursor-magnetic"
+          >
+            Get started
+          </button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="lg:hidden p-2 hover:bg-slate-700/50 rounded-lg cursor-magnetic"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle Menu"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {isMenuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden bg-slate-800 border-t border-slate-700 mt-1 px-6 py-4 rounded-xl mx-4">
+          <ul className="flex flex-col space-y-4 text-[15px] font-medium">
+            {navItems.map((item, index) => (
+              <li key={index}>
+                <button
+                  onClick={(e) => handleNavClick(item.action, e)}
+                  className="block text-slate-300 hover:text-white transition-colors cursor-magnetic w-full text-left"
                 >
-                  Our Portfolio
+                  {item.name}
                 </button>
-                <button 
-                  onClick={handleContactClick} 
-                  className="w-full py-3 px-2 text-left text-white hover:text-secondary-300 hover:bg-primary-700/50 transition-all duration-200 ease-in-out font-medium border-b border-primary-500/20 last:border-b-0"
-                >
-                  Contact Us
-                </button>
-              </div>
-            </div>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6 flex flex-col space-y-3">
+            <a
+              href="#login"
+              className="text-slate-300 hover:text-white transition-colors text-center cursor-magnetic"
+            >
+              Login
+            </a>
+            <button
+              onClick={(e) => handleNavClick("contact", e)}
+              className="bg-slate-200 text-slate-900 font-medium px-5 py-2 rounded-xl text-center hover:bg-white transition cursor-magnetic w-full"
+            >
+              Get started
+            </button>
           </div>
-        )}
-      </nav>
+        </div>
+      )}
     </header>
-    </>
   );
 };
 
