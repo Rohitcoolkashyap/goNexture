@@ -33,7 +33,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="bg-slate-900 text-white py-12 lg:py-20 relative overflow-hidden min-h-[90vh] flex items-center">
+    <section className="bg-slate-900 text-white py-8 sm:py-12 lg:py-20 relative overflow-hidden min-h-[90vh] flex items-center">
       {/* Interactive Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div 
@@ -131,7 +131,7 @@ const Hero = () => {
             </div>
 
             {/* CTA Buttons with Magnetic Effect & Ripples */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <RippleEffect
                 className="bg-[#bad7f5] text-[#0f131c] px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-2xl cursor-magnetic relative group inline-block"
                 ref={magneticRef1}
@@ -152,7 +152,7 @@ const Hero = () => {
             </div>
 
             {/* Stats or Features */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-8 mt-12 pt-8 border-t border-slate-800/50">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-8 mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-800/50">
               <div className="text-center lg:text-left">
                 <div className="text-2xl font-bold text-white">8x</div>
                 <div className="text-sm text-slate-400">efficiency gain</div>
