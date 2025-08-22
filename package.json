@@ -16,9 +16,17 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build && npm run optimize-build",
+    "build:analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
+    "build:prod": "GENERATE_SOURCEMAP=false INLINE_RUNTIME_CHUNK=false npm run build",
+    "optimize-build": "node scripts/optimize-build.js",
+    "optimize-images": "node scripts/convert-images.js",
+    "test": "react-scripts test --watchAll=false",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:watch": "react-scripts test",
+    "eject": "react-scripts eject",
+    "serve": "npx serve -s build -l 3000",
+    "analyze": "npx webpack-bundle-analyzer build/static/js/*.js"
   },
   "eslintConfig": {
     "extends": [

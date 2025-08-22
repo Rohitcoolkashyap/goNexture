@@ -1,3 +1,15 @@
+# GoNexture Robots.txt
 # https://www.robotstxt.org/robotstxt.html
+
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://gonexture.com/sitemap.xml
+
+# Crawl-delay for well-behaved bots
+Crawl-delay: 1

@@ -1,43 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import AnimatedSection from './AnimatedSection';
 import HeroContactForm from './HeroContactForm';
 import RippleEffect from './RippleEffect';
 import useMagneticEffect from '../hooks/useMagneticEffect';
 
-const Hero = () => {
+const Hero = React.memo(() => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const magneticRef1 = useMagneticEffect(0.2);
   const magneticRef2 = useMagneticEffect(0.15);
 
-  useEffect(() => {
-    const updateMousePosition = (e) => {
+  // Throttle mouse movement for better performance
+  const throttleRef = React.useRef(null);
+  
+  const updateMousePosition = useCallback((e) => {
+    if (throttleRef.current) {
+      clearTimeout(throttleRef.current);
+    }
+    throttleRef.current = setTimeout(() => {
       setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
+    }, 16); // ~60fps
   }, []);
 
-  const handleGetStartedClick = () => {
+  useEffect(() => {
+    window.addEventListener('mousemove', updateMousePosition);
+    
+    return () => {
+      window.removeEventListener('mousemove', updateMousePosition);
+      if (throttleRef.current) {
+        clearTimeout(throttleRef.current);
+      }
+    };
+  }, [updateMousePosition]);
+
+  const handleGetStartedClick = useCallback(() => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
 
-  const handleViewPortfolioClick = () => {
+  const handleViewPortfolioClick = useCallback(() => {
     const portfolioSection = document.getElementById('portfolio');
     if (portfolioSection) {
       portfolioSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
 
   return (
-    <section className="bg-slate-900 text-white py-8 sm:py-12 lg:py-20 relative overflow-hidden min-h-[90vh] flex items-center">
+    <section className="bg-slate-900 text-white py-8 sm:py-12 lg:pt-20 lg:pb-12 relative overflow-hidden min-h-[90vh] flex items-center">
       {/* Interactive Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div 
-          className="absolute top-20 left-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out"
+          className="absolute top-20 left-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out lg:transform"
           style={{
             transform: typeof window !== 'undefined' 
               ? `translate(${(mousePosition.x - window.innerWidth / 2) * 0.02}px, ${(mousePosition.y - window.innerHeight / 2) * 0.02}px)`
@@ -45,7 +59,7 @@ const Hero = () => {
           }}
         ></div>
         <div 
-          className="absolute top-40 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out" 
+          className="absolute top-40 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out lg:transform" 
           style={{ 
             animationDelay: '2s',
             transform: typeof window !== 'undefined' 
@@ -54,7 +68,7 @@ const Hero = () => {
           }}
         ></div>
         <div 
-          className="absolute bottom-20 left-1/4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out" 
+          className="absolute bottom-20 left-1/4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out lg:transform" 
           style={{ 
             animationDelay: '4s',
             transform: typeof window !== 'undefined' 
@@ -64,20 +78,20 @@ const Hero = () => {
         ></div>
       </div>
 
-      {/* Floating particles that follow mouse */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+      {/* Floating particles that follow mouse - Desktop only for performance */}
+      <div className="hidden lg:block absolute inset-0 pointer-events-none">
+        {[...Array(12)].map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-white/20 rounded-full animate-pulse"
             style={{
-              left: `${10 + (i * 4.5)}%`,
-              top: `${15 + (i * 3.2)}%`,
+              left: `${10 + (i * 7)}%`,
+              top: `${15 + (i * 5)}%`,
               transform: typeof window !== 'undefined' 
                 ? `translate(${(mousePosition.x - window.innerWidth / 2) * (0.001 * (i + 1))}px, ${(mousePosition.y - window.innerHeight / 2) * (0.001 * (i + 1))}px)`
                 : 'translate(0px, 0px)',
               transition: 'transform 0.5s ease-out',
-              animationDelay: `${i * 0.1}s`
+              animationDelay: `${i * 0.15}s`
             }}
           />
         ))}
@@ -152,7 +166,7 @@ const Hero = () => {
             </div>
 
             {/* Stats or Features */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-8 mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-800/50">
+            {/* <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-8 mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-800/50">
               <div className="text-center lg:text-left">
                 <div className="text-2xl font-bold text-white">8x</div>
                 <div className="text-sm text-slate-400">efficiency gain</div>
@@ -165,7 +179,7 @@ const Hero = () => {
                 <div className="text-2xl font-bold text-white">24/7</div>
                 <div className="text-sm text-slate-400">support</div>
               </div>
-            </div>
+            </div> */}
 
           </AnimatedSection>
 
@@ -179,6 +193,8 @@ const Hero = () => {
       </div>
     </section>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;

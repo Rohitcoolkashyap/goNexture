@@ -151,12 +151,17 @@ const HeroContactForm = () => {
 
         {/* Project Type Select */}
         <div className="relative" ref={dropdownRef}>
+          <label htmlFor="hero-projectType" className="sr-only">
+            Project Type
+          </label>
           <button
             type="button"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm text-left flex items-center justify-between"
             aria-expanded={isDropdownOpen}
             aria-haspopup="listbox"
+            aria-label="Select project type"
+            id="hero-projectType"
           >
             <span className={formData.projectType ? 'text-white' : 'text-slate-400'}>
               {formData.projectType 
@@ -183,7 +188,11 @@ const HeroContactForm = () => {
 
           {/* Dropdown Menu */}
           {isDropdownOpen && (
-            <div className="absolute z-50 w-full mt-1 bg-slate-700 border border-slate-600 rounded-lg shadow-xl overflow-hidden">
+            <div 
+              className="absolute z-50 w-full mt-1 bg-slate-700 border border-slate-600 rounded-lg shadow-xl overflow-hidden"
+              role="listbox"
+              aria-labelledby="hero-projectType"
+            >
               <div className="max-h-60 overflow-y-auto">
                 {projectTypes.map((type) => (
                   <button
@@ -195,6 +204,8 @@ const HeroContactForm = () => {
                         ? 'bg-blue-600 text-white'
                         : 'text-slate-200'
                     }`}
+                    role="option"
+                    aria-selected={formData.projectType === type.value}
                   >
                     {type.label}
                   </button>
