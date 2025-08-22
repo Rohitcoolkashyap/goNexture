@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 
-const CursorFollower = () => {
+const CursorFollower = React.memo(() => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const throttleRef = useRef(null);
 
-  useEffect(() => {
-    const updateMousePosition = (e) => {
+  const updateMousePosition = useCallback((e) => {
+    if (throttleRef.current) {
+      cancelAnimationFrame(throttleRef.current);
+    }
+    
+    throttleRef.current = requestAnimationFrame(() => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       
       // Check if we're hovering over a magnetic element
@@ -18,14 +23,19 @@ const CursorFollower = () => {
       } else {
         setIsHovering(false);
       }
-    };
+    });
+  }, []);
 
+  useEffect(() => {
     window.addEventListener('mousemove', updateMousePosition);
 
     return () => {
       window.removeEventListener('mousemove', updateMousePosition);
+      if (throttleRef.current) {
+        cancelAnimationFrame(throttleRef.current);
+      }
     };
-  }, []);
+  }, [updateMousePosition]);
 
   return (
     <>
@@ -74,6 +84,8 @@ const CursorFollower = () => {
       </div>
     </>
   );
-};
+});
+
+CursorFollower.displayName = 'CursorFollower';
 
 export default CursorFollower;
