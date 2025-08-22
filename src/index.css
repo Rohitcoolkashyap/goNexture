@@ -14,9 +14,10 @@
   }
   
   body {
-    @apply m-0 font-sans antialiased;
+    @apply m-0 font-sans antialiased bg-slate-900;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     cursor: none; /* Hide default cursor for custom cursor effect */
+    background-color: #0f172a; /* Fallback for better compatibility */
   }
 
   /* Custom cursor styles */

@@ -14,7 +14,7 @@ const Footer = React.lazy(() => import('./components/Footer'));
 
 // Loading component for better UX
 const LoadingSpinner = () => (
-  <div className="flex items-center justify-center py-8 sm:py-16">
+  <div className="flex items-center justify-center py-8 sm:py-16 bg-slate-900 min-h-[200px]">
     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
   </div>
 );
@@ -22,7 +22,7 @@ const LoadingSpinner = () => (
 function App() {
   return (
     <ErrorBoundary>
-      <div className="App">
+      <div className="App bg-slate-900 min-h-screen">
         <CursorFollower />
         <Header />
         <Hero />
