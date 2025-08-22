@@ -14,9 +14,10 @@
   }
   
   body {
-    @apply m-0 font-sans antialiased;
+    @apply m-0 font-sans antialiased bg-slate-900;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     cursor: none; /* Hide default cursor for custom cursor effect */
+    background-color: #0f172a; /* Fallback for better compatibility */
   }
 
   /* Custom cursor styles */
@@ -221,5 +222,63 @@
   }
   50% {
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
+  }
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 1023px) {
+  /* Reduce animations on mobile for better performance */
+  .animate-pulse {
+    animation-duration: 3s;
+  }
+  
+  .animate-ping {
+    animation-duration: 2s;
+  }
+  
+  .animate-bounce {
+    animation-duration: 2s;
+  }
+  
+  /* Disable expensive transforms on mobile */
+  .cursor-magnetic {
+    transform: none !important;
+  }
+  
+  /* Disable background transforms on mobile */
+  .lg\:transform {
+    transform: none !important;
+  }
+  
+  /* Simplify transitions on mobile */
+  * {
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Reduce blur effects on mobile */
+  .filter.blur-3xl {
+    filter: blur(20px) !important;
+  }
+  
+  /* Disable parallax and transform effects on mobile */
+  .group-hover\:scale-105:hover {
+    transform: none !important;
+  }
+}
+
+/* Prefer reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-pulse,
+  .animate-ping,
+  .animate-bounce,
+  .animate-spin {
+    animation: none !important;
   }
 }

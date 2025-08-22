@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 
-const CursorFollower = () => {
+const CursorFollower = React.memo(() => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const throttleRef = useRef(null);
 
-  useEffect(() => {
-    const updateMousePosition = (e) => {
+  const updateMousePosition = useCallback((e) => {
+    if (throttleRef.current) {
+      cancelAnimationFrame(throttleRef.current);
+    }
+    
+    throttleRef.current = requestAnimationFrame(() => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       
       // Check if we're hovering over a magnetic element
@@ -18,17 +23,22 @@ const CursorFollower = () => {
       } else {
         setIsHovering(false);
       }
-    };
+    });
+  }, []);
 
+  useEffect(() => {
     window.addEventListener('mousemove', updateMousePosition);
 
     return () => {
       window.removeEventListener('mousemove', updateMousePosition);
+      if (throttleRef.current) {
+        cancelAnimationFrame(throttleRef.current);
+      }
     };
-  }, []);
+  }, [updateMousePosition]);
 
   return (
-    <>
+    <div className="hidden lg:block">
       {/* Main cursor follower */}
       <div
         className="fixed pointer-events-none z-[9999] mix-blend-difference transition-opacity duration-300"
@@ -72,8 +82,10 @@ const CursorFollower = () => {
           <div className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-ping" style={{ left: '25px', top: '40px', animationDelay: '1s' }}></div>
         </div>
       </div>
-    </>
+    </div>
   );
-};
+});
+
+CursorFollower.displayName = 'CursorFollower';
 
 export default CursorFollower;

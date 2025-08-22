@@ -222,6 +222,8 @@ const ContactForm = () => {
                           className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-slate-600 bg-slate-700/50 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm lg:text-base text-left flex items-center justify-between"
                           aria-expanded={isDropdownOpen}
                           aria-haspopup="listbox"
+                          aria-label="Select project type"
+                          id="projectType"
                         >
                           <span className={formData.projectType ? 'text-white' : 'text-slate-400'}>
                             {formData.projectType 
@@ -248,7 +250,11 @@ const ContactForm = () => {
 
                         {/* Dropdown Menu */}
                         {isDropdownOpen && (
-                          <div className="absolute z-50 w-full mt-1 bg-slate-700 border border-slate-600 rounded-lg shadow-xl overflow-hidden">
+                          <div 
+                            className="absolute z-50 w-full mt-1 bg-slate-700 border border-slate-600 rounded-lg shadow-xl overflow-hidden"
+                            role="listbox"
+                            aria-labelledby="projectType"
+                          >
                             <div className="max-h-60 overflow-y-auto">
                               {projectTypes.map((type) => (
                                 <button
@@ -260,6 +266,8 @@ const ContactForm = () => {
                                       ? 'bg-blue-600 text-white'
                                       : 'text-slate-200'
                                   }`}
+                                  role="option"
+                                  aria-selected={formData.projectType === type.value}
                                 >
                                   {type.label}
                                 </button>

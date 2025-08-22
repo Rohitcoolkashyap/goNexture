@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
 
-const AnimatedSection = ({ 
+const AnimatedSection = React.memo(({ 
   children, 
   animation = 'fade-up', 
   delay = 0,
@@ -10,7 +10,7 @@ const AnimatedSection = ({
 }) => {
   const [sectionRef, isVisible] = useIntersectionObserver();
 
-  const getAnimationClass = () => {
+  const animationClass = useMemo(() => {
     switch (animation) {
       case 'fade-up':
         return isVisible ? 'animate-fade-in-up' : 'section-hidden';
@@ -23,20 +23,25 @@ const AnimatedSection = ({
       default:
         return isVisible ? 'animate-fade-in-up' : 'section-hidden';
     }
-  };
+  }, [animation, isVisible]);
 
-  const animationStyle = delay > 0 ? { animationDelay: `${delay}s` } : {};
+  const animationStyle = useMemo(() => 
+    delay > 0 ? { animationDelay: `${delay}s` } : {}, 
+    [delay]
+  );
 
   return (
     <div
       ref={sectionRef}
-      className={`transition-all duration-1200 ${getAnimationClass()} ${className}`}
+      className={`transition-all duration-1200 ${animationClass} ${className}`}
       style={animationStyle}
       {...props}
     >
       {children}
     </div>
   );
-};
+});
+
+AnimatedSection.displayName = 'AnimatedSection';
 
 export default AnimatedSection;
