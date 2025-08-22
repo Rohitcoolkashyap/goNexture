@@ -27,9 +27,15 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-primary-600 text-white">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="py-4 border-t border-primary-500">
+    <footer className="bg-slate-900 text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-32 h-32 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="py-4 border-t border-slate-800">
           {/* Mobile Layout */}
           <div className="lg:hidden">
             {/* Single Line Layout */}
@@ -40,7 +46,7 @@ const Footer = () => {
                 onClick={() => {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-secondary-300 transition-colors cursor-pointer bg-transparent border-none p-0 text-xs text-white"
+                className="hover:text-blue-300 transition-colors cursor-pointer bg-transparent border-none p-0 text-xs text-white cursor-magnetic"
               >
                 About Us
               </button>
@@ -51,7 +57,7 @@ const Footer = () => {
                     contactSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="hover:text-secondary-300 transition-colors cursor-pointer bg-transparent border-none p-0 text-xs text-white"
+                className="hover:text-blue-300 transition-colors cursor-pointer bg-transparent border-none p-0 text-xs text-white cursor-magnetic"
               >
                 Contact Us
               </button>
@@ -62,12 +68,12 @@ const Footer = () => {
                     portfolioSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="hover:text-secondary-300 transition-colors cursor-pointer bg-transparent border-none p-0 text-xs text-white"
+                className="hover:text-blue-300 transition-colors cursor-pointer bg-transparent border-none p-0 text-xs text-white cursor-magnetic"
               >
                 Success Stories
               </button>
               </div>
-              <div className="text-blue-100">
+              <div className="text-slate-400">
                 © 2025 Gonexture. All rights reserved.
               </div>
             </div>
@@ -76,15 +82,15 @@ const Footer = () => {
 
           {/* Desktop Layout */}
           <div className="hidden lg:flex items-center justify-between">
-            <div className="text-blue-100 text-sm">
+            <div className="text-slate-400 text-sm">
               © 2025 Gonexture. All rights reserved.
             </div>
-            <div className="flex flex-wrap items-center gap-6 text-blue-100 text-sm">
+            <div className="flex flex-wrap items-center gap-6 text-slate-300 text-sm">
               <button
                 onClick={() => {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0 text-left text-sm text-blue-100"
+                className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0 text-left text-sm text-slate-300 cursor-magnetic"
               >
                 About Us
               </button>
@@ -95,7 +101,7 @@ const Footer = () => {
                     contactSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0 text-left text-sm text-blue-100"
+                className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0 text-left text-sm text-slate-300 cursor-magnetic"
               >
                 Contact Us
               </button>
@@ -106,7 +112,7 @@ const Footer = () => {
                     portfolioSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0 text-left text-sm text-blue-100"
+                className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0 text-left text-sm text-slate-300 cursor-magnetic"
               >
                 Success Stories
               </button>
@@ -115,7 +121,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/rohit-kashyap-5ab844180/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center hover:bg-primary-400 transition-colors"
+                className="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors cursor-magnetic"
               >
                 <svg
                   className="w-5 h-5"

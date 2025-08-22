@@ -73,26 +73,47 @@ const ContactForm = () => {
   };
 
   return (
-    <section ref={sectionRef} id="contact" className="py-12 lg:py-16 pt-8 lg:pt-12 bg-gray-50">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section ref={sectionRef} id="contact" className="py-12 lg:py-16 pt-8 lg:pt-12 bg-slate-900 text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div className="absolute top-0 right-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+      </div>
+
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px), 
+                           linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 lg:mb-12">
-            <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-3 lg:mb-4">
-              Start Your Project Today
+            <div className="inline-flex items-center px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full text-sm font-medium mb-6 border border-slate-700/50">
+              <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+              Contact Us
+            </div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              Start Your{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Project Today</span>
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-sm lg:text-base px-4 lg:px-0">
+            <p className="text-lg lg:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-4 lg:px-0">
               Ready to bring your ideas to life? Fill out the form below and let's discuss how we can help you find the perfect freelancer for your project.
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl lg:rounded-3xl shadow-lg overflow-hidden">
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-lg overflow-hidden border border-slate-700/50">
             <div className="grid grid-cols-1 lg:grid-cols-2">
               {/* Form Section */}
               <div className="p-6 lg:p-8">
                 <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
+                      <label htmlFor="name" className="block text-xs lg:text-sm font-semibold text-slate-300 mb-1 lg:mb-2">
                         Full Name *
                       </label>
                       <input
@@ -102,12 +123,12 @@ const ContactForm = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-sm lg:text-base"
+                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-slate-600 bg-slate-700/50 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm lg:text-base placeholder-slate-400"
                         placeholder="Enter your full name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
+                      <label htmlFor="email" className="block text-xs lg:text-sm font-semibold text-slate-300 mb-1 lg:mb-2">
                         Email Address *
                       </label>
                       <input
@@ -117,7 +138,7 @@ const ContactForm = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-sm lg:text-base"
+                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-slate-600 bg-slate-700/50 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm lg:text-base placeholder-slate-400"
                         placeholder="Enter your email"
                       />
                     </div>
@@ -125,7 +146,7 @@ const ContactForm = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                     <div>
-                      <label htmlFor="phone" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
+                      <label htmlFor="phone" className="block text-xs lg:text-sm font-semibold text-slate-300 mb-1 lg:mb-2">
                         Phone Number
                       </label>
                       <input
@@ -134,12 +155,12 @@ const ContactForm = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-sm lg:text-base"
+                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-slate-600 bg-slate-700/50 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm lg:text-base placeholder-slate-400"
                         placeholder="Enter your phone number"
                       />
                     </div>
                     <div>
-                      <label htmlFor="company" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
+                      <label htmlFor="company" className="block text-xs lg:text-sm font-semibold text-slate-300 mb-1 lg:mb-2">
                         Company Name
                       </label>
                       <input
@@ -148,7 +169,7 @@ const ContactForm = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-sm lg:text-base"
+                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-slate-600 bg-slate-700/50 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm lg:text-base placeholder-slate-400"
                         placeholder="Enter your company name"
                       />
                     </div>
@@ -156,7 +177,7 @@ const ContactForm = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                     <div>
-                      <label htmlFor="projectType" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
+                      <label htmlFor="projectType" className="block text-xs lg:text-sm font-semibold text-slate-300 mb-1 lg:mb-2">
                         Project Type *
                       </label>
                       <select
@@ -165,7 +186,7 @@ const ContactForm = () => {
                         value={formData.projectType}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-sm lg:text-base"
+                        className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-slate-600 bg-slate-700/50 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm lg:text-base"
                       >
                         <option value="">Select project type</option>
                         <option value="web-development">Web Development</option>
@@ -179,7 +200,7 @@ const ContactForm = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-xs lg:text-sm font-semibold text-gray-700 mb-1 lg:mb-2">
+                    <label htmlFor="message" className="block text-xs lg:text-sm font-semibold text-slate-300 mb-1 lg:mb-2">
                       Project Description *
                     </label>
                     <textarea
@@ -189,7 +210,7 @@ const ContactForm = () => {
                       onChange={handleChange}
                       required
                       rows="4"
-                      className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all resize-none text-sm lg:text-base"
+                      className="w-full px-3 py-2.5 lg:px-4 lg:py-3 border border-slate-600 bg-slate-700/50 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none text-sm lg:text-base placeholder-slate-400"
                       placeholder="Tell us about your project requirements..."
                     ></textarea>
                   </div>
@@ -222,10 +243,10 @@ const ContactForm = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-3 lg:py-4 px-4 lg:px-6 rounded-lg font-semibold text-base lg:text-lg transition-colors ${
+                    className={`w-full py-3 lg:py-4 px-4 lg:px-6 rounded-lg font-semibold text-base lg:text-lg transition-colors cursor-magnetic ${
                       isSubmitting 
-                        ? 'bg-gray-400 text-gray-200 cursor-not-allowed' 
-                        : 'bg-primary-600 text-white hover:bg-primary-700'
+                        ? 'bg-slate-600 text-slate-400 cursor-not-allowed' 
+                        : 'bg-slate-200 text-slate-900 hover:bg-white'
                     }`}
                   >
                     {isSubmitting ? (
@@ -244,62 +265,70 @@ const ContactForm = () => {
               </div>
 
               {/* Info Section */}
-              <div className="bg-primary-600 text-white p-6 lg:p-12 flex flex-col justify-center">
-                <div className="space-y-6 lg:space-y-8">
-                  <div>
-                    <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4">Why Choose Us?</h3>
-                    <p className="text-blue-100 mb-4 lg:mb-6 text-sm lg:text-base">
-                      Join thousands of satisfied clients who have found their perfect freelance match through our platform.
-                    </p>
+              <div className="bg-gradient-to-br from-blue-600 to-purple-700 text-white p-6 lg:p-12 flex flex-col justify-center relative overflow-hidden">
+                {/* Background decorative elements */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-4 right-4 w-32 h-32 bg-white rounded-full filter blur-xl"></div>
+                  <div className="absolute bottom-4 left-4 w-24 h-24 bg-white rounded-full filter blur-xl"></div>
+                </div>
+                
+                <div className="relative z-10">
+                  <div className="space-y-6 lg:space-y-8">
+                    <div>
+                      <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4">Why Choose Us?</h3>
+                      <p className="text-blue-100 mb-4 lg:mb-6 text-sm lg:text-base">
+                        Join thousands of satisfied clients who have found their perfect freelance match through our platform.
+                      </p>
+                    </div>
+
+                                      <div className="space-y-4 lg:space-y-6">
+                      <div className="flex items-start space-x-3 lg:space-x-4">
+                        <div className="w-6 h-6 lg:w-8 lg:h-8 bg-slate-200 text-slate-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
+                          ✓
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-1 text-sm lg:text-base">Vetted Professionals</h4>
+                          <p className="text-blue-100 text-xs lg:text-sm">All freelancers are thoroughly screened and verified</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-3 lg:space-x-4">
+                        <div className="w-6 h-6 lg:w-8 lg:h-8 bg-slate-200 text-slate-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
+                          ✓
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-1 text-sm lg:text-base">Fast Matching</h4>
+                          <p className="text-blue-100 text-xs lg:text-sm">Get matched with suitable freelancers within 24 hours</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-3 lg:space-x-4">
+                        <div className="w-6 h-6 lg:w-8 lg:h-8 bg-slate-200 text-slate-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
+                          ✓
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-1 text-sm lg:text-base">Secure Payments</h4>
+                          <p className="text-blue-100 text-xs lg:text-sm">Safe and secure payment processing with escrow protection</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-3 lg:space-x-4">
+                        <div className="w-6 h-6 lg:w-8 lg:h-8 bg-slate-200 text-slate-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
+                          ✓
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-1 text-sm lg:text-base">24/7 Support</h4>
+                          <p className="text-blue-100 text-xs lg:text-sm">Round-the-clock customer support for all your needs</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* <div className="pt-6 border-t border-primary-500">
+                      <p className="text-secondary-300 text-sm">
+                        🕒 Average response time: <span className="font-semibold">2 hours</span>
+                      </p>
+                    </div> */}
                   </div>
-
-                  <div className="space-y-4 lg:space-y-6">
-                    <div className="flex items-start space-x-3 lg:space-x-4">
-                      <div className="w-6 h-6 lg:w-8 lg:h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
-                        ✓
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1 text-sm lg:text-base">Vetted Professionals</h4>
-                        <p className="text-blue-100 text-xs lg:text-sm">All freelancers are thoroughly screened and verified</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3 lg:space-x-4">
-                      <div className="w-6 h-6 lg:w-8 lg:h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
-                        ✓
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1 text-sm lg:text-base">Fast Matching</h4>
-                        <p className="text-blue-100 text-xs lg:text-sm">Get matched with suitable freelancers within 24 hours</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3 lg:space-x-4">
-                      <div className="w-6 h-6 lg:w-8 lg:h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
-                        ✓
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1 text-sm lg:text-base">Secure Payments</h4>
-                        <p className="text-blue-100 text-xs lg:text-sm">Safe and secure payment processing with escrow protection</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3 lg:space-x-4">
-                      <div className="w-6 h-6 lg:w-8 lg:h-8 bg-secondary-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-xs lg:text-sm flex-shrink-0">
-                        ✓
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-1 text-sm lg:text-base">24/7 Support</h4>
-                        <p className="text-blue-100 text-xs lg:text-sm">Round-the-clock customer support for all your needs</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* <div className="pt-6 border-t border-primary-500">
-                    <p className="text-secondary-300 text-sm">
-                      🕒 Average response time: <span className="font-semibold">2 hours</span>
-                    </p>
-                  </div> */}
                 </div>
               </div>
             </div>
