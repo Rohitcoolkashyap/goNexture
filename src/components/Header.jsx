@@ -49,9 +49,11 @@ const Header = () => {
             >
               <img
                 src={logo}
-                alt="Logo"
+                alt="GoNexture - Where Innovation Meets Execution"
                 className="object-contain w-[200px] h-[64px] sm:w-[220px] sm:h-[72px]"
-                style={{ width: undefined, height: undefined }}
+                width="220"
+                height="72"
+                loading="eager"
               />
             </button>
           </div>

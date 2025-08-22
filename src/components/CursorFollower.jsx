@@ -38,7 +38,7 @@ const CursorFollower = React.memo(() => {
   }, [updateMousePosition]);
 
   return (
-    <>
+    <div className="hidden lg:block">
       {/* Main cursor follower */}
       <div
         className="fixed pointer-events-none z-[9999] mix-blend-difference transition-opacity duration-300"
@@ -82,7 +82,7 @@ const CursorFollower = React.memo(() => {
           <div className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-ping" style={{ left: '25px', top: '40px', animationDelay: '1s' }}></div>
         </div>
       </div>
-    </>
+    </div>
   );
 });
 

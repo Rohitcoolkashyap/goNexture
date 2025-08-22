@@ -173,8 +173,11 @@ const Team = () => {
                         {member.image ? (
                           <img 
                             src={member.image} 
-                            alt={`${member.name} - ${member.role}`}
+                            alt={`${member.name} - ${member.role} at GoNexture`}
                             className="w-full h-full object-cover"
+                            width="80"
+                            height="80"
+                            loading="lazy"
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-3xl text-slate-300">
@@ -259,8 +262,11 @@ const Team = () => {
                     {member.image ? (
                       <img 
                         src={member.image} 
-                        alt={`${member.name} - ${member.role}`}
+                        alt={`${member.name} - ${member.role} at GoNexture`}
                         className="w-full h-full object-cover"
+                        width="112"
+                        height="112"
+                        loading="lazy"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-3xl lg:text-5xl text-slate-300">

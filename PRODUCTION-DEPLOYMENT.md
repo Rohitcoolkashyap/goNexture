@@ -142,10 +142,25 @@ server {
     gzip_min_length 1024;
     gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
 
-    # Cache Control
-    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+    # Cache Control for Static Assets
+    location ~* \.(js|css|woff|woff2|eot|ttf|otf)$ {
         expires 1y;
         add_header Cache-Control "public, immutable";
+        add_header Vary "Accept-Encoding";
+        gzip_static on;
+    }
+    
+    # Cache Control for Images
+    location ~* \.(png|jpg|jpeg|gif|ico|svg|webp|avif)$ {
+        expires 6M;
+        add_header Cache-Control "public, immutable";
+        add_header Vary "Accept-Encoding";
+    }
+    
+    # Cache Control for HTML
+    location ~* \.(html)$ {
+        expires 1h;
+        add_header Cache-Control "public, must-revalidate";
     }
 
     # React Router Support

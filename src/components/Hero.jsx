@@ -23,6 +23,7 @@ const Hero = React.memo(() => {
 
   useEffect(() => {
     window.addEventListener('mousemove', updateMousePosition);
+    
     return () => {
       window.removeEventListener('mousemove', updateMousePosition);
       if (throttleRef.current) {
@@ -50,7 +51,7 @@ const Hero = React.memo(() => {
       {/* Interactive Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div 
-          className="absolute top-20 left-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out"
+          className="absolute top-20 left-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out lg:transform"
           style={{
             transform: typeof window !== 'undefined' 
               ? `translate(${(mousePosition.x - window.innerWidth / 2) * 0.02}px, ${(mousePosition.y - window.innerHeight / 2) * 0.02}px)`
@@ -58,7 +59,7 @@ const Hero = React.memo(() => {
           }}
         ></div>
         <div 
-          className="absolute top-40 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out" 
+          className="absolute top-40 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out lg:transform" 
           style={{ 
             animationDelay: '2s',
             transform: typeof window !== 'undefined' 
@@ -67,7 +68,7 @@ const Hero = React.memo(() => {
           }}
         ></div>
         <div 
-          className="absolute bottom-20 left-1/4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out" 
+          className="absolute bottom-20 left-1/4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transition-transform duration-1000 ease-out lg:transform" 
           style={{ 
             animationDelay: '4s',
             transform: typeof window !== 'undefined' 
@@ -77,26 +78,24 @@ const Hero = React.memo(() => {
         ></div>
       </div>
 
-      {/* Floating particles that follow mouse */}
-      {useMemo(() => (
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white/20 rounded-full animate-pulse"
-              style={{
-                left: `${10 + (i * 4.5)}%`,
-                top: `${15 + (i * 3.2)}%`,
-                transform: typeof window !== 'undefined' 
-                  ? `translate(${(mousePosition.x - window.innerWidth / 2) * (0.001 * (i + 1))}px, ${(mousePosition.y - window.innerHeight / 2) * (0.001 * (i + 1))}px)`
-                  : 'translate(0px, 0px)',
-                transition: 'transform 0.5s ease-out',
-                animationDelay: `${i * 0.1}s`
-              }}
-            />
-          ))}
-        </div>
-      ), [mousePosition])}
+      {/* Floating particles that follow mouse - Desktop only for performance */}
+      <div className="hidden lg:block absolute inset-0 pointer-events-none">
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white/20 rounded-full animate-pulse"
+            style={{
+              left: `${10 + (i * 7)}%`,
+              top: `${15 + (i * 5)}%`,
+              transform: typeof window !== 'undefined' 
+                ? `translate(${(mousePosition.x - window.innerWidth / 2) * (0.001 * (i + 1))}px, ${(mousePosition.y - window.innerHeight / 2) * (0.001 * (i + 1))}px)`
+                : 'translate(0px, 0px)',
+              transition: 'transform 0.5s ease-out',
+              animationDelay: `${i * 0.15}s`
+            }}
+          />
+        ))}
+      </div>
 
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-10">

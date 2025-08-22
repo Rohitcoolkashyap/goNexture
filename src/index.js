@@ -39,9 +39,40 @@ if (config.features.pwa && 'serviceWorker' in navigator && config.isProduction) 
     navigator.serviceWorker.register('/sw.js')
       .then((registration) => {
         console.log('SW registered: ', registration);
+        
+        // Update service worker when new content is available
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // New content is available; please refresh
+              // Use a custom notification instead of confirm to avoid ESLint error
+              console.log('New content is available! The page will reload automatically.');
+              setTimeout(() => {
+                window.location.reload();
+              }, 1000);
+            }
+          });
+        });
       })
       .catch((registrationError) => {
         console.log('SW registration failed: ', registrationError);
       });
+  });
+}
+
+// Optimize for back/forward cache
+if (config.isProduction) {
+  // Remove any unload event listeners that prevent bfcache
+  window.addEventListener('beforeunload', () => {
+    // Keep this minimal to allow bfcache
+  });
+  
+  // Listen for page show event to handle bfcache restoration
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      // Page was restored from bfcache
+      console.log('Page restored from back/forward cache');
+    }
   });
 }

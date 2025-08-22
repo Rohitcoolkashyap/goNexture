@@ -1,16 +1,29 @@
 // Service Worker for GoNexture PWA
-// Version 1.0.0
+// Version 1.0.1 - Optimized for performance and bfcache
 
-const CACHE_NAME = 'gonexture-v1.0.0';
+const CACHE_NAME = 'gonexture-v1.0.1';
+const STATIC_CACHE = 'gonexture-static-v1.0.1';
+const DYNAMIC_CACHE = 'gonexture-dynamic-v1.0.1';
+
 const urlsToCache = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
   '/favicon.svg',
   '/favicon.ico',
   '/manifest.json',
-  // Add other static assets that should be cached
+  '/sitemap.xml',
+  // Static assets will be cached dynamically
 ];
+
+const STATIC_ASSETS = [
+  /\.(?:js|css|woff|woff2|eot|ttf|otf)$/,
+  /\.(?:png|jpg|jpeg|svg|gif|webp|avif)$/,
+];
+
+const CACHE_STRATEGIES = {
+  static: 'CacheFirst',
+  dynamic: 'NetworkFirst',
+  images: 'CacheFirst'
+};
 
 // Install event - cache resources
 self.addEventListener('install', (event) => {
@@ -46,63 +59,77 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch event - serve from cache when possible
+// Optimized fetch event handler for better performance and bfcache compatibility
 self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') {
+  const { request } = event;
+  const url = new URL(request.url);
+
+  // Skip non-GET requests and external requests
+  if (request.method !== 'GET' || url.origin !== location.origin) {
     return;
   }
 
-  // Skip requests to external domains
-  if (!event.request.url.startsWith(self.location.origin)) {
-    return;
+  // Handle different types of requests with appropriate strategies
+  if (STATIC_ASSETS.some(pattern => pattern.test(url.pathname))) {
+    // Static assets: Cache First strategy
+    event.respondWith(cacheFirst(request));
+  } else if (request.destination === 'document') {
+    // HTML pages: Network First strategy
+    event.respondWith(networkFirst(request));
+  } else {
+    // Other resources: Network First strategy
+    event.respondWith(networkFirst(request));
   }
-
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version if available
-        if (response) {
-          return response;
-        }
-
-        // Clone the request because it's a stream that can only be consumed once
-        const fetchRequest = event.request.clone();
-
-        return fetch(fetchRequest).then((response) => {
-          // Check if we received a valid response
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-
-          // Clone the response because it's a stream that can only be consumed once
-          const responseToCache = response.clone();
-
-          caches.open(CACHE_NAME)
-            .then((cache) => {
-              // Only cache GET requests
-              if (event.request.method === 'GET') {
-                cache.put(event.request, responseToCache);
-              }
-            });
-
-          return response;
-        }).catch((error) => {
-          console.error('Fetch failed:', error);
-          
-          // Return offline page or cached content if available
-          if (event.request.destination === 'document') {
-            return caches.match('/') || new Response(
-              '<html><body><h1>Offline</h1><p>You are currently offline. Please check your internet connection.</p></body></html>',
-              { headers: { 'Content-Type': 'text/html' } }
-            );
-          }
-          
-          throw error;
-        });
-      })
-  );
 });
+
+// Cache First strategy for static assets
+async function cacheFirst(request) {
+  const cache = await caches.open(STATIC_CACHE);
+  const cached = await cache.match(request);
+  
+  if (cached) {
+    return cached;
+  }
+  
+  try {
+    const response = await fetch(request);
+    if (response.status === 200) {
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch (error) {
+    console.error('Cache first failed:', error);
+    throw error;
+  }
+}
+
+// Network First strategy for dynamic content
+async function networkFirst(request) {
+  const cache = await caches.open(DYNAMIC_CACHE);
+  
+  try {
+    const response = await fetch(request);
+    if (response.status === 200) {
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch (error) {
+    const cached = await cache.match(request);
+    if (cached) {
+      return cached;
+    }
+    
+    // Fallback for HTML pages
+    if (request.destination === 'document') {
+      const fallback = await cache.match('/');
+      if (fallback) {
+        return fallback;
+      }
+    }
+    
+    throw error;
+  }
+}
 
 // Background sync for form submissions (if supported)
 self.addEventListener('sync', (event) => {
