@@ -118,13 +118,34 @@ const Team = () => {
   }, [isMobile, isAutoPlayPaused, teamMembers.length]);
 
   return (
-    <section ref={sectionRef} className="py-12 lg:py-16 bg-white">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section ref={sectionRef} className="py-12 lg:py-16 bg-slate-900 text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div className="absolute top-0 right-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+      </div>
+
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px), 
+                           linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-10 lg:mb-16">
-          <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-3 lg:mb-4">
-            Meet Our Team
+          <div className="inline-flex items-center px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full text-sm font-medium mb-6 border border-slate-700/50">
+            <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+            Our Team
+          </div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            Meet Our{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Team</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-sm lg:text-base px-4 lg:px-0">
+          <p className="text-lg lg:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-4 lg:px-0">
             Meet the passionate individuals who drive innovation and deliver exceptional technology solutions for our clients.
           </p>
         </div>
@@ -145,10 +166,10 @@ const Team = () => {
                   key={index} 
                   className="w-full flex-shrink-0 px-4"
                 >
-                  <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 text-center mx-auto max-w-sm h-full">
+                  <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-slate-700/50 text-center mx-auto max-w-sm h-full">
                     {/* Profile Image */}
                     <div className="mb-4">
-                      <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center overflow-hidden">
+                      <div className="w-20 h-20 mx-auto bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center overflow-hidden border-2 border-slate-600">
                         {member.image ? (
                           <img 
                             src={member.image} 
@@ -156,7 +177,7 @@ const Team = () => {
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center text-3xl">
+                          <div className="w-full h-full flex items-center justify-center text-3xl text-slate-300">
                             {member.name.charAt(0)}
                           </div>
                         )}
@@ -165,24 +186,24 @@ const Team = () => {
 
                     {/* Member Info */}
                     <div className="mb-4">
-                      <h3 className="text-lg font-bold text-gray-900 mb-1">
+                      <h3 className="text-lg font-bold text-white mb-1">
                         {member.name}
                       </h3>
-                      <p className="text-primary-600 font-semibold mb-2 text-sm">
+                      <p className="text-blue-400 font-semibold mb-2 text-sm">
                         {member.role}
                       </p>
-                      <p className="text-gray-600 text-xs leading-relaxed px-2">
+                      <p className="text-slate-300 text-xs leading-relaxed px-2">
                         {member.bio}
                       </p>
                     </div>
 
                     {/* Social Links */}
-                    <div className="flex justify-center space-x-3 pt-3 border-t border-gray-100">
+                    <div className="flex justify-center space-x-3 pt-3 border-t border-slate-700/50">
                       <a
                         href={member.social.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-8 h-8 bg-gray-100 hover:bg-primary-600 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300"
+                        className="w-8 h-8 bg-slate-700 hover:bg-blue-600 text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300 cursor-magnetic"
                         aria-label={`${member.name}'s LinkedIn`}
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -193,7 +214,7 @@ const Team = () => {
                         href={`https://mail.google.com/mail/?view=cm&fs=1&to=${member.social.email}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-8 h-8 bg-gray-100 hover:bg-primary-600 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300"
+                        className="w-8 h-8 bg-slate-700 hover:bg-blue-600 text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300 cursor-magnetic"
                         aria-label={`Email ${member.name}`}
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -217,8 +238,8 @@ const Team = () => {
                   onClick={() => handleDotClick(index)}
                   className={`w-2 h-2 rounded-full transition-colors ${
                     index === currentSlide 
-                      ? 'bg-primary-600' 
-                      : 'bg-gray-300 hover:bg-gray-400'
+                      ? 'bg-blue-400' 
+                      : 'bg-slate-600 hover:bg-slate-500'
                   }`}
                   aria-label={`Go to team member ${index + 1}`}
                 />
@@ -231,10 +252,10 @@ const Team = () => {
         <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-6">
           {teamMembers.map((member, index) => (
             <div key={index} className="group">
-              <div className="bg-white rounded-2xl lg:rounded-3xl p-4 lg:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 text-center h-full">
+              <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl lg:rounded-3xl p-4 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-700/50 text-center h-full">
                 {/* Profile Image */}
                 <div className="mb-4 lg:mb-6">
-                  <div className="w-20 h-20 lg:w-28 lg:h-28 mx-auto bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                  <div className="w-20 h-20 lg:w-28 lg:h-28 mx-auto bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300 overflow-hidden border-2 border-slate-600">
                     {member.image ? (
                       <img 
                         src={member.image} 
@@ -242,7 +263,7 @@ const Team = () => {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-3xl lg:text-5xl">
+                      <div className="w-full h-full flex items-center justify-center text-3xl lg:text-5xl text-slate-300">
                         {member.name.charAt(0)}
                       </div>
                     )}
@@ -251,24 +272,24 @@ const Team = () => {
 
                 {/* Member Info */}
                 <div className="mb-4">
-                  <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-1 lg:mb-2">
+                  <h3 className="text-lg lg:text-xl font-bold text-white mb-1 lg:mb-2">
                     {member.name}
                   </h3>
-                  <p className="text-primary-600 font-semibold mb-2 lg:mb-3 text-sm lg:text-base">
+                  <p className="text-blue-400 font-semibold mb-2 lg:mb-3 text-sm lg:text-base">
                     {member.role}
                   </p>
-                  <p className="text-gray-600 text-xs lg:text-sm leading-relaxed px-2 lg:px-0">
+                  <p className="text-slate-300 text-xs lg:text-sm leading-relaxed px-2 lg:px-0">
                     {member.bio}
                   </p>
                 </div>
 
                 {/* Social Links */}
-                <div className="flex justify-center space-x-3 lg:space-x-4 pt-3 lg:pt-4 border-t border-gray-100">
+                <div className="flex justify-center space-x-3 lg:space-x-4 pt-3 lg:pt-4 border-t border-slate-700/50">
                   <a
                     href={member.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 lg:w-10 lg:h-10 bg-gray-100 hover:bg-primary-600 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300"
+                    className="w-8 h-8 lg:w-10 lg:h-10 bg-slate-700 hover:bg-blue-600 text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300 cursor-magnetic"
                     aria-label={`${member.name}'s LinkedIn`}
                   >
                     <svg className="w-4 h-4 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -279,7 +300,7 @@ const Team = () => {
                     href={`https://mail.google.com/mail/?view=cm&fs=1&to=${member.social.email}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 lg:w-10 lg:h-10 bg-gray-100 hover:bg-primary-600 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300"
+                    className="w-8 h-8 lg:w-10 lg:h-10 bg-slate-700 hover:bg-blue-600 text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-colors duration-300 cursor-magnetic"
                     aria-label={`Email ${member.name}`}
                   >
                     <svg className="w-4 h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -293,19 +314,27 @@ const Team = () => {
         </div>
 
         {/* Team Stats */}
-        <div className="mt-12 lg:mt-16 bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl lg:rounded-3xl p-6 lg:p-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center text-white">
-            <div>
-              <div className="text-xl lg:text-4xl font-bold mb-1 lg:mb-2">3</div>
-              <div className="text-blue-100 text-sm lg:text-base">Expert Team Members</div>
-            </div>
-            <div>
-              <div className="text-xl lg:text-4xl font-bold mb-1 lg:mb-2">50K+</div>
-              <div className="text-blue-100 text-sm lg:text-base">Students Served</div>
-            </div>
-            <div>
-              <div className="text-xl lg:text-4xl font-bold mb-1 lg:mb-2">99.9%</div>
-              <div className="text-blue-100 text-sm lg:text-base">Client Satisfaction</div>
+        <div className="mt-12 lg:mt-16 bg-gradient-to-r from-blue-600 to-purple-700 rounded-2xl lg:rounded-3xl p-6 lg:p-12 relative overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-4 right-4 w-32 h-32 bg-white rounded-full filter blur-xl"></div>
+            <div className="absolute bottom-4 left-4 w-24 h-24 bg-white rounded-full filter blur-xl"></div>
+          </div>
+          
+          <div className="relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center text-white">
+              <div>
+                <div className="text-xl lg:text-4xl font-bold mb-1 lg:mb-2">3</div>
+                <div className="text-blue-100 text-sm lg:text-base">Expert Team Members</div>
+              </div>
+              <div>
+                <div className="text-xl lg:text-4xl font-bold mb-1 lg:mb-2">50K+</div>
+                <div className="text-blue-100 text-sm lg:text-base">Students Served</div>
+              </div>
+              <div>
+                <div className="text-xl lg:text-4xl font-bold mb-1 lg:mb-2">99.9%</div>
+                <div className="text-blue-100 text-sm lg:text-base">Client Satisfaction</div>
+              </div>
             </div>
           </div>
         </div>

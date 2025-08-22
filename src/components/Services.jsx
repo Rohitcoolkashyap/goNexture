@@ -140,26 +140,35 @@ const Services = () => {
   }, [isMobile, isAutoPlayPaused, services.length]);
 
   return (
-    <section id="services" className="py-12 lg:py-16 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+    <section id="services" className="py-12 lg:py-16 bg-slate-900 text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-72 h-72 bg-primary-600 rounded-full mix-blend-multiply filter blur-xl"></div>
-        <div className="absolute top-0 right-0 w-72 h-72 bg-secondary-400 rounded-full mix-blend-multiply filter blur-xl"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-primary-400 rounded-full mix-blend-multiply filter blur-xl"></div>
+        <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div className="absolute top-0 right-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+      </div>
+
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px), 
+                           linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-8 lg:mb-10">
-          <div className="inline-flex items-center px-3 py-1.5 lg:px-4 lg:py-2 bg-primary-100 text-primary-700 rounded-full text-xs lg:text-sm font-medium mb-4 lg:mb-6">
-            <span className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-primary-600 rounded-full mr-2"></span>
+          <div className="inline-flex items-center px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full text-sm font-medium mb-6 border border-slate-700/50">
+            <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
             Complete Tech Solutions
           </div>
-          <h2 className="text-xl sm:text-2xl lg:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight px-4 lg:px-0">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight px-4 lg:px-0">
             Anything You Can Think Of,{' '}
-            <span className="text-primary-600">We Have It</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">We Have It</span>
           </h2>
-          <p className="text-sm lg:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 lg:px-0">
+          <p className="text-lg lg:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-4 lg:px-0">
             From concept to deployment, we provide comprehensive technology solutions 
             that transform your ideas into powerful digital experiences.
           </p>
@@ -181,23 +190,23 @@ const Services = () => {
                   key={index} 
                   className="w-full flex-shrink-0 px-4"
                 >
-                  <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 mx-auto max-w-sm">
+                  <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-slate-700/50 mx-auto max-w-sm">
                     {/* Icon */}
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center text-xl mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-xl mb-4">
                       {service.icon}
                     </div>
                     
                     {/* Title & Description */}
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    <h3 className="text-lg font-bold text-white mb-2">
                       {service.title}
                     </h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+                    <p className="text-slate-300 mb-4 leading-relaxed text-sm">
                       {service.description}
                     </p>
-                     <div className="mt-4 pt-4 border-t border-gray-100">
+                     <div className="mt-4 pt-4 border-t border-slate-700/50">
                        <button 
                          onClick={scrollToContact}
-                         className="flex items-center text-primary-600 font-semibold text-sm cursor-pointer hover:text-primary-700"
+                         className="flex items-center text-blue-400 font-semibold text-sm cursor-magnetic hover:text-blue-300 transition-colors"
                        >
                          Learn More
                          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -221,8 +230,8 @@ const Services = () => {
                   onClick={() => handleDotClick(index)}
                   className={`w-2 h-2 rounded-full transition-colors ${
                     index === currentSlide 
-                      ? 'bg-primary-600' 
-                      : 'bg-gray-300 hover:bg-gray-400'
+                      ? 'bg-blue-400' 
+                      : 'bg-slate-600 hover:bg-slate-500'
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -238,23 +247,23 @@ const Services = () => {
               key={index} 
               className="group"
             >
-              <div className="bg-white rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary-200">
+              <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-700/50 hover:border-slate-600">
                 {/* Icon */}
-                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg lg:rounded-xl flex items-center justify-center text-xl lg:text-2xl mb-4 lg:mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg lg:rounded-xl flex items-center justify-center text-xl lg:text-2xl mb-4 lg:mb-6 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
                 </div>
                 
                 {/* Title & Description */}
-                <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">
+                <h3 className="text-lg lg:text-xl font-bold text-white mb-2 lg:mb-3">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 mb-4 lg:mb-6 leading-relaxed text-sm lg:text-base">
+                <p className="text-slate-300 mb-4 lg:mb-6 leading-relaxed text-sm lg:text-base">
                   {service.description}
                 </p>
-                 <div className="mt-4 lg:mt-6 pt-4 lg:pt-6 border-t border-gray-100">
+                 <div className="mt-4 lg:mt-6 pt-4 lg:pt-6 border-t border-slate-700/50">
                    <button 
                      onClick={scrollToContact}
-                     className="flex items-center text-primary-600 font-semibold text-sm group-hover:translate-x-2 transition-transform duration-300 cursor-pointer hover:text-primary-700"
+                     className="flex items-center text-blue-400 font-semibold text-sm group-hover:translate-x-2 transition-transform duration-300 cursor-magnetic hover:text-blue-300"
                    >
                      Learn More
                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -269,20 +278,28 @@ const Services = () => {
 
         {/* CTA Section */}
         <div className="text-center mt-12 lg:mt-16">
-          <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl lg:rounded-2xl p-6 lg:p-12 text-white">
-            <h3 className="text-xl lg:text-3xl font-bold mb-3 lg:mb-4">
-              Don't See What You Need?
-            </h3>
-            <p className="text-primary-100 text-sm lg:text-base mb-6 lg:mb-8 max-w-2xl mx-auto">
-              We're always expanding our services. If you have a unique requirement, 
-              let's discuss how we can help bring your vision to life.
-            </p>
-            <button 
-               onClick={scrollToContact}
-               className="bg-white text-primary-600 px-4 py-2 lg:px-6 lg:py-3 rounded-full font-bold text-sm lg:text-base hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
-             >
-               Let's Talk About Your Project
-             </button>
+          <div className="bg-gradient-to-r from-blue-600 to-purple-700 rounded-xl lg:rounded-2xl p-6 lg:p-12 text-white relative overflow-hidden">
+            {/* Background decorative elements */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-4 right-4 w-32 h-32 bg-white rounded-full filter blur-xl"></div>
+              <div className="absolute bottom-4 left-4 w-24 h-24 bg-white rounded-full filter blur-xl"></div>
+            </div>
+            
+            <div className="relative z-10">
+              <h3 className="text-xl lg:text-3xl font-bold mb-3 lg:mb-4">
+                Don't See What You Need?
+              </h3>
+              <p className="text-blue-100 text-sm lg:text-base mb-6 lg:mb-8 max-w-2xl mx-auto">
+                We're always expanding our services. If you have a unique requirement, 
+                let's discuss how we can help bring your vision to life.
+              </p>
+              <button 
+                 onClick={scrollToContact}
+                 className="bg-slate-200 text-slate-900 px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-bold text-sm lg:text-base hover:bg-white transition-all duration-300 transform hover:scale-105 shadow-lg cursor-magnetic"
+               >
+                 Let's Talk About Your Project
+               </button>
+            </div>
           </div>
         </div>
       </div>
