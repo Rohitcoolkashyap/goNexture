@@ -47,7 +47,12 @@ const Header = () => {
               onClick={(e) => handleNavClick("home", e)}
               className="cursor-magnetic"
             >
-              <img src={logo} alt="Logo" className="w-22 h-16 mr-2 object-contain" style={{width: '180px', height: '58px'}} />
+              <img
+                src={logo}
+                alt="Logo"
+                className="object-contain w-[200px] h-[64px] sm:w-[220px] sm:h-[72px]"
+                style={{ width: undefined, height: undefined }}
+              />
             </button>
           </div>
 

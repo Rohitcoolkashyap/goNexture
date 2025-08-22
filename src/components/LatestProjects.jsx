@@ -114,26 +114,35 @@ const LatestProjects = () => {
   }, [isMobile, isAutoPlayPaused, projects.length]);
 
   return (
-    <section id="portfolio" className="py-12 lg:py-16 pt-10 lg:pt-14 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+    <section id="portfolio" className="py-12 lg:py-16 pt-10 lg:pt-14 bg-slate-900 text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-72 h-72 bg-primary-600 rounded-full mix-blend-multiply filter blur-xl"></div>
-        <div className="absolute top-0 right-0 w-72 h-72 bg-secondary-400 rounded-full mix-blend-multiply filter blur-xl"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-primary-400 rounded-full mix-blend-multiply filter blur-xl"></div>
+        <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div className="absolute top-0 right-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+      </div>
+
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px), 
+                           linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-10 lg:mb-16">
-          <div className="inline-flex items-center px-3 py-1.5 lg:px-4 lg:py-2 bg-primary-100 text-primary-700 rounded-full text-xs lg:text-sm font-medium mb-4 lg:mb-6">
-            <span className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-primary-600 rounded-full mr-2"></span>
+          <div className="inline-flex items-center px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full text-sm font-medium mb-6 border border-slate-700/50">
+            <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></span>
             Our Portfolio
           </div>
-          <h2 className="text-xl sm:text-2xl lg:text-5xl font-bold text-gray-900 mb-3 lg:mb-4 leading-tight px-4 lg:px-0">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight px-4 lg:px-0">
             Projects We're{' '}
-            <span className="text-primary-600">Proud Of</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Proud Of</span>
           </h2>
-          <p className="text-sm lg:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 lg:px-0">
+          <p className="text-lg lg:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-4 lg:px-0">
             End-to-end development of comprehensive educational platforms that serve thousands of students daily.
           </p>
         </div>
@@ -154,9 +163,9 @@ const LatestProjects = () => {
                   key={index} 
                   className="w-full flex-shrink-0 px-4"
                 >
-                  <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 mx-auto max-w-sm h-full flex flex-col">
+                  <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-slate-700/50 mx-auto max-w-sm h-full flex flex-col">
                     {/* Project Header */}
-                    <div className="h-32 bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-3xl relative">
+                    <div className="h-32 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-3xl relative">
                       {project.image}
                       <div className="absolute top-2 right-2">
                         <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-sm px-2 py-1 rounded-full">
@@ -170,19 +179,19 @@ const LatestProjects = () => {
                     <div className="p-4 flex-1 flex flex-col">
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-3">
-                          <span className="text-xs font-semibold text-primary-600 bg-primary-100 px-2 py-1 rounded-full">
+                          <span className="text-xs font-semibold text-blue-400 bg-blue-400/20 px-2 py-1 rounded-full">
                             {project.category}
                           </span>
-                          <span className="text-xs text-gray-500 font-mono">
+                          <span className="text-xs text-slate-400 font-mono">
                             {project.website}
                           </span>
                         </div>
                         
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">
+                        <h3 className="text-lg font-bold text-white mb-2">
                           {project.title}
                         </h3>
                         
-                        <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+                        <p className="text-slate-300 mb-4 leading-relaxed text-sm">
                           {project.description}
                         </p>
                       </div>
@@ -192,7 +201,7 @@ const LatestProjects = () => {
                         href={`https://${project.website}`} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="block w-full bg-primary-600 text-white text-center py-2.5 rounded-lg font-semibold hover:bg-primary-700 transition-colors mt-auto text-sm"
+                        className="block w-full bg-slate-200 text-slate-900 text-center py-2.5 rounded-lg font-semibold hover:bg-white transition-colors mt-auto text-sm cursor-magnetic"
                       >
                         Visit Website
                       </a>
@@ -213,8 +222,8 @@ const LatestProjects = () => {
                   onClick={() => handleDotClick(index)}
                   className={`w-2 h-2 rounded-full transition-colors ${
                     index === currentSlide 
-                      ? 'bg-primary-600' 
-                      : 'bg-gray-300 hover:bg-gray-400'
+                      ? 'bg-blue-400' 
+                      : 'bg-slate-600 hover:bg-slate-500'
                   }`}
                   aria-label={`Go to project ${index + 1}`}
                 />
@@ -227,9 +236,9 @@ const LatestProjects = () => {
         <div className="hidden lg:grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-12 lg:mb-16">
           {projects.map((project, index) => (
             <div key={index} className="group h-full">
-              <div className="bg-white rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 h-full flex flex-col">
+              <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-700/50 h-full flex flex-col">
                 {/* Project Header */}
-                <div className="h-36 lg:h-48 bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-4xl lg:text-6xl relative">
+                <div className="h-36 lg:h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-4xl lg:text-6xl relative">
                   {project.image}
                   <div className="absolute top-3 right-3 lg:top-4 lg:right-4">
                     <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-sm px-2 py-1 lg:px-3 lg:py-1 rounded-full">
@@ -243,19 +252,19 @@ const LatestProjects = () => {
                 <div className="p-4 lg:p-8 flex-1 flex flex-col">
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-3 lg:mb-4">
-                      <span className="text-xs font-semibold text-primary-600 bg-primary-100 px-2 py-1 lg:px-3 lg:py-1 rounded-full">
+                      <span className="text-xs font-semibold text-blue-400 bg-blue-400/20 px-2 py-1 lg:px-3 lg:py-1 rounded-full">
                         {project.category}
                       </span>
-                      <span className="text-xs lg:text-sm text-gray-500 font-mono">
+                      <span className="text-xs lg:text-sm text-slate-400 font-mono">
                         {project.website}
                       </span>
                     </div>
                     
-                    <h3 className="text-lg lg:text-2xl font-bold text-gray-900 mb-2 lg:mb-3 group-hover:text-primary-600 transition-colors">
+                    <h3 className="text-lg lg:text-2xl font-bold text-white mb-2 lg:mb-3 group-hover:text-blue-400 transition-colors">
                       {project.title}
                     </h3>
                     
-                    <p className="text-gray-600 mb-4 lg:mb-6 leading-relaxed text-sm lg:text-base">
+                    <p className="text-slate-300 mb-4 lg:mb-6 leading-relaxed text-sm lg:text-base">
                       {project.description}
                     </p>
                   </div>
@@ -265,7 +274,7 @@ const LatestProjects = () => {
                     href={`https://${project.website}`} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block w-full bg-primary-600 text-white text-center py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-semibold hover:bg-primary-700 transition-colors mt-auto text-sm lg:text-base"
+                    className="block w-full bg-slate-200 text-slate-900 text-center py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-semibold hover:bg-white transition-colors mt-auto text-sm lg:text-base cursor-magnetic"
                   >
                     Visit Website
                   </a>
@@ -276,32 +285,32 @@ const LatestProjects = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="bg-white rounded-xl lg:rounded-2xl p-6 lg:p-12 shadow-lg">
+        <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl lg:rounded-2xl p-6 lg:p-12 shadow-lg border border-slate-700/50">
           <div className="text-center mb-6 lg:mb-8">
-            <h3 className="text-xl lg:text-3xl font-bold text-gray-900 mb-3 lg:mb-4">
+            <h3 className="text-xl lg:text-3xl font-bold text-white mb-3 lg:mb-4">
               Impact of Our Work
             </h3>
-            <p className="text-gray-600 text-sm lg:text-lg">
+            <p className="text-slate-300 text-sm lg:text-lg">
               These platforms serve thousands of students and faculty members daily
             </p>
           </div>
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
             <div className="text-center">
-              <div className="text-2xl lg:text-4xl font-bold text-primary-600 mb-1 lg:mb-2">50K+</div>
-              <div className="text-xs lg:text-sm text-gray-600">Active Students</div>
+              <div className="text-2xl lg:text-4xl font-bold text-blue-400 mb-1 lg:mb-2">50K+</div>
+              <div className="text-xs lg:text-sm text-slate-400">Active Students</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl lg:text-4xl font-bold text-primary-600 mb-1 lg:mb-2">1000+</div>
-              <div className="text-xs lg:text-sm text-gray-600">Faculty Members</div>
+              <div className="text-2xl lg:text-4xl font-bold text-blue-400 mb-1 lg:mb-2">1000+</div>
+              <div className="text-xs lg:text-sm text-slate-400">Faculty Members</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl lg:text-4xl font-bold text-primary-600 mb-1 lg:mb-2">99.9%</div>
-              <div className="text-xs lg:text-sm text-gray-600">Uptime</div>
+              <div className="text-2xl lg:text-4xl font-bold text-blue-400 mb-1 lg:mb-2">99.9%</div>
+              <div className="text-xs lg:text-sm text-slate-400">Uptime</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl lg:text-4xl font-bold text-primary-600 mb-1 lg:mb-2">5.0</div>
-              <div className="text-xs lg:text-sm text-gray-600">Client Rating</div>
+              <div className="text-2xl lg:text-4xl font-bold text-blue-400 mb-1 lg:mb-2">5.0</div>
+              <div className="text-xs lg:text-sm text-slate-400">Client Rating</div>
             </div>
           </div>
         </div>

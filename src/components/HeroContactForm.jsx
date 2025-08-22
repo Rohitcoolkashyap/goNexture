@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import useMagneticEffect from '../hooks/useMagneticEffect';
 
@@ -14,6 +14,8 @@ const HeroContactForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -21,6 +23,39 @@ const HeroContactForm = () => {
       [e.target.name]: e.target.value
     });
   };
+
+  // Project type options
+  const projectTypes = [
+    { value: 'web-development', label: 'Web Development' },
+    { value: 'mobile-app', label: 'Mobile App' },
+    { value: 'design', label: 'Design' },
+    { value: 'marketing', label: 'Digital Marketing' },
+    { value: 'writing', label: 'Content Writing' },
+    { value: 'other', label: 'Other' }
+  ];
+
+  // Handle dropdown selection
+  const handleProjectTypeSelect = (value) => {
+    setFormData({
+      ...formData,
+      projectType: value
+    });
+    setIsDropdownOpen(false);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -115,22 +150,66 @@ const HeroContactForm = () => {
         </div>
 
         {/* Project Type Select */}
-        <div>
-          <select
+        <div className="relative" ref={dropdownRef}>
+          <button
+            type="button"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm text-left flex items-center justify-between"
+            aria-expanded={isDropdownOpen}
+            aria-haspopup="listbox"
+          >
+            <span className={formData.projectType ? 'text-white' : 'text-slate-400'}>
+              {formData.projectType 
+                ? projectTypes.find(type => type.value === formData.projectType)?.label 
+                : 'Select project type'
+              }
+            </span>
+            <svg
+              className={`w-4 h-4 transition-transform duration-200 ${
+                isDropdownOpen ? 'rotate-180' : ''
+              }`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+
+          {/* Dropdown Menu */}
+          {isDropdownOpen && (
+            <div className="absolute z-50 w-full mt-1 bg-slate-700 border border-slate-600 rounded-lg shadow-xl overflow-hidden">
+              <div className="max-h-60 overflow-y-auto">
+                {projectTypes.map((type) => (
+                  <button
+                    key={type.value}
+                    type="button"
+                    onClick={() => handleProjectTypeSelect(type.value)}
+                    className={`w-full px-4 py-3 text-left text-sm transition-colors hover:bg-slate-600 ${
+                      formData.projectType === type.value
+                        ? 'bg-blue-600 text-white'
+                        : 'text-slate-200'
+                    }`}
+                  >
+                    {type.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Hidden input for form validation */}
+          <input
+            type="hidden"
             name="projectType"
             value={formData.projectType}
-            onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-sm"
-          >
-            <option value="" className="text-slate-400">Select project type</option>
-            <option value="web-development">Web Development</option>
-            <option value="mobile-app">Mobile App</option>
-            <option value="design">Design</option>
-            <option value="marketing">Digital Marketing</option>
-            <option value="writing">Content Writing</option>
-            <option value="other">Other</option>
-          </select>
+          />
         </div>
 
         {/* Message Textarea */}
@@ -140,7 +219,7 @@ const HeroContactForm = () => {
             value={formData.message}
             onChange={handleChange}
             required
-            rows="3"
+            rows="4"
             className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none text-sm"
             placeholder="Tell us about your project..."
           ></textarea>
